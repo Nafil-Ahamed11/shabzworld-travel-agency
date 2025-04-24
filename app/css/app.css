@@ -72,6 +72,13 @@
   --info: #3498db;        /* Blue */
 }
 
+.logo{
+  width: 100%;
+  height: 40px;
+  max-width: 100%;
+  display: block;
+}
+
 .header-top {
   padding-left: 209px;
   background-color: var(--light);
@@ -1381,7 +1388,7 @@
 /*----------------------breadcumb--------------------*/
 .breadcumb-section {
   padding: 137px 0px 135px 0px;
-  background-image: url(../../assets/images/page/breakcrumb.jpg);
+  background-image: url();
   position: relative;
   background-position: center;
   background-repeat: no-repeat;
@@ -2293,7 +2300,7 @@
 /*----------------------Tour Package--------------------*/
 .tour-package {
   background-color: #F3F8F6;
-  background-image: url(../../assets/images/page/bg1.png);
+  background-image: url(../../assests/images/page/bg1.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2486,7 +2493,7 @@
 }
 
 .our-activities {
-  background-image: url("../../assets/images/page/bg-4.png");
+  background-image: url("../../assests/images/page/bg-4.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2541,7 +2548,7 @@
 
 .populer-activities-section {
   padding-top: 114px;
-  background-image: url(../../assets/images/page/bg-4.png);
+  background-image: url(../../assests/images/page/bg-4.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2573,7 +2580,7 @@
 /*----------------------Counter--------------------*/
 .widget-counter {
   background-color: #4DA528;
-  background-image: url(../../assets/images/page/bg-counter.png);
+  background-image: url(../../assests/images/page/bg-counter.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2642,7 +2649,7 @@
 .counter-to {
   padding-top: 170px;
   padding-bottom: 71px;
-  background-image: url(../../assets/images/page/bg-counter.jpg);
+  background-image: url(../../assests/images/page/bg-counter.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3094,7 +3101,7 @@
 .widget-video {
   padding-top: 236px;
   padding-bottom: 137px;
-  background-image: url("../../assets/images/page/video.jpg");
+  background-image: url("../../assests/images/page/video1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3272,7 +3279,7 @@
 .widget-feature3 {
   padding-top: 339px;
   padding-bottom: 93px;
-  background-image: url(../../assets/images/page/bg-4.png);
+  background-image: url(../../assests/images/page/bg-4.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3505,7 +3512,7 @@
 /*----------------------impresssino--------------------*/
 .impressino {
   padding-top: 182px;
-  background-image: url(../../assets/images/page/bg-counter.jpg);
+  background-image: url(../../assests/images/page/bg-counter.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -5819,7 +5826,7 @@
 
 /*----------------------Slide-home 04--------------------*/
 .slider-home4 {
-  background-image: url(../../assets/images/slide/slide4.jpg);
+  background-image: url(../../assests/images/slide/slide4.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
