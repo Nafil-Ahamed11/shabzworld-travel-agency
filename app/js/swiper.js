@@ -264,8 +264,8 @@ var swiper = new Swiper(".mySwiperGalllery", {
         type: "fraction",
     },
 });
-var swiper2 = new Swiper(".mySwiper222", {
-    spaceBetween: 10,
+var swiper = new Swiper(".mySwiper222", {
+    spaceBetween: 30,
     speed: 1500,
     autoplay: {
         delay: 5000,
@@ -273,10 +273,24 @@ var swiper2 = new Swiper(".mySwiper222", {
     },
     pagination: {
         el: ".swiper-pagination",
-        type: "fraction",
+        clickable: true,
     },
-    thumbs: {
-        swiper: swiper,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        640: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+        },
+        1024: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+        },
     },
 });
 

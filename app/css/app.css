@@ -45,7 +45,6 @@
 @import "magnific-popup.css";
 @import "swiper-bundle.min.css";
 @import "nice-select.css";
-@import "../../assets/fonts/style.css";
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Yesteryear&display=swap");
 @import "../css/bootstrap.css";
 /* Header
@@ -2580,7 +2579,7 @@
 /*----------------------Counter--------------------*/
 .widget-counter {
   background-color: #4DA528;
-  background-image: url(../../assests/images/page/bg-counter.jpg);
+  background-image: url(../../assests/images/page/bg-counter2.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2649,7 +2648,7 @@
 .counter-to {
   padding-top: 170px;
   padding-bottom: 71px;
-  background-image: url(../../assests/images/page/bg-counter.jpg);
+  background-image: url(../../assests/images/page/bg-counter2.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2867,7 +2866,7 @@
 }
 
 .testimonial-section-h4 .content {
-  background-image: url(../../assets/images/page/mask-home4.png);
+  background-image: url(../../assests/images/page/mask-home4.png);
   background-position: right bottom;
   background-repeat: no-repeat;
   padding-left: 19.4em;
@@ -3277,7 +3276,7 @@
 }
 
 .widget-feature3 {
-  padding-top: 339px;
+  padding-top: 79px;
   padding-bottom: 93px;
   background-image: url(../../assests/images/page/bg-4.png);
   background-position: center;
@@ -3512,7 +3511,7 @@
 /*----------------------impresssino--------------------*/
 .impressino {
   padding-top: 182px;
-  background-image: url(../../assests/images/page/bg-counter.jpg);
+  background-image: url(../../assests/images/page/bg-counter2.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -5826,7 +5825,7 @@
 
 /*----------------------Slide-home 04--------------------*/
 .slider-home4 {
-  background-image: url(../../assests/images/slide/slide4.jpg);
+  background-image: url(../../assests/images/slide/slide3.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

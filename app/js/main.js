@@ -260,6 +260,7 @@
             box.addClass('faq-active');
         }
     });
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
   
     
     // Dom Ready
