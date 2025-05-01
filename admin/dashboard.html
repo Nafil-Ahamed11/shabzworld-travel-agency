@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dubai Tours - Admin Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+        <div class="position-sticky pt-3">
+          <div class="text-center mb-4">
+            <h4 class="text-white">Dubai Tours</h4>
+            <p class="text-white-50">Admin Dashboard</p>
+          </div>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="dashboard.html">
+                <i class="fas fa-tachometer-alt me-2"></i>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tours.html">
+                <i class="fas fa-route me-2"></i>
+                Tours
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="bookings.html">
+                <i class="fas fa-calendar-check me-2"></i>
+                Bookings
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="users.html">
+                <i class="fas fa-users me-2"></i>
+                Users
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="logout-btn">
+                <i class="fas fa-sign-out-alt me-2"></i>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Main content -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Tours</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-tours">Loading...</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-route fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Bookings</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-bookings">Loading...</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-calendar-check fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Users</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-users">Loading...</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Revenue</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-revenue">Loading...</div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Bookings Table -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Recent Bookings</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="bookingsTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Tour</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-bookings">
+                  <!-- Bookings will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Include Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <!-- Bootstrap JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- jQuery and DataTables JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+  <!-- Firebase Config Script -->
+  <script src="../assets/js/firebase-config.js"></script>
+  
+  <!-- Dashboard Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user is logged in and is an admin
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          // Check if user is admin
+          firebase.firestore().collection('users').doc(user.uid)
+            .get().then((doc) => {
+              if (!doc.exists || doc.data().role !== 'admin') {
+                // Not an admin, redirect to home
+                window.location.href = '../index.html';
+              } else {
+                // User is admin, load dashboard data
+                loadDashboardData();
+              }
+            }).catch(error => {
+              console.error("Error checking user role:", error);
+              window.location.href = '../index.html';
+            });
+        } else {
+          // Not logged in, redirect to login
+          window.location.href = '../login.html';
+        }
+      });
+      
+      // Logout functionality
+      document.getElementById('logout-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        firebase.auth().signOut().then(() => {
+          window.location.href = '../login.html';
+        }).catch((error) => {
+          console.error("Error signing out: ", error);
+        });
+      });
+      
+      // Function to load dashboard data
+      function loadDashboardData() {
+        // Get total tours
+        firebase.firestore().collection('tours').get()
+          .then(snapshot => {
+            document.getElementById('total-tours').textContent = snapshot.size;
+          })
+          .catch(error => {
+            console.error("Error getting tours: ", error);
+          });
+        
+        // Get total bookings
+        firebase.firestore().collection('bookings').get()
+          .then(snapshot => {
+            document.getElementById('total-bookings').textContent = snapshot.size;
+            
+            // Calculate revenue
+            let revenue = 0;
+            snapshot.forEach(doc => {
+              revenue += doc.data().amount || 0;
+            });
+            document.getElementById('total-revenue').textContent = '$' + revenue.toFixed(2);
+          })
+          .catch(error => {
+            console.error("Error getting bookings: ", error);
+          });
+        
+        // Get total users
+        firebase.firestore().collection('users').get()
+          .then(snapshot => {
+            document.getElementById('total-users').textContent = snapshot.size;
+          })
+          .catch(error => {
+            console.error("Error getting users: ", error);
+          });
+        
+        // Get recent bookings
+        firebase.firestore().collection('bookings')
+          .orderBy('bookingDate', 'desc')
+          .limit(10)
+          .get()
+          .then(snapshot => {
+            const bookingsTable = document.getElementById('recent-bookings');
+            bookingsTable.innerHTML = '';
+            
+            if (snapshot.empty) {
+              bookingsTable.innerHTML = '<tr><td colspan="6" class="text-center">No bookings found</td></tr>';
+              return;
+            }
+            
+            // Get all tour IDs from bookings
+            const tourIds = new Set();
+            snapshot.forEach(doc => {
+              if (doc.data().tourId) {
+                tourIds.add(doc.data().tourId);
+              }
+            });
+            
+            // Get tour details
+            const tourPromises = Array.from(tourIds).map(tourId => 
+              firebase.firestore().collection('tours').doc(tourId).get()
+            );
+            
+            Promise.all(tourPromises)
+              .then(tourDocs => {
+                // Create a map of tour IDs to tour names
+                const tourMap = {};
+                tourDocs.forEach(doc => {
+                  if (doc.exists) {
+                    tourMap[doc.id] = doc.data().title;
+                  }
+                });
+                
+                // Display bookings with tour names
+                snapshot.forEach(doc => {
+                  const booking = doc.data();
+                  const row = document.createElement('tr');
+                  
+                  // Format date
+                  let bookingDate = 'N/A';
+                  if (booking.bookingDate) {
+                    const date = booking.bookingDate.toDate();
+                    bookingDate = date.toLocaleDateString();
+                  }
+                  
+                  // Status badge class
+                  let statusClass = 'bg-secondary';
+                  if (booking.status === 'confirmed') {
+                    statusClass = 'bg-success';
+                  } else if (booking.status === 'pending') {
+                    statusClass = 'bg-warning text-dark';
+                  } else if (booking.status === 'cancelled') {
+                    statusClass = 'bg-danger';
+                  }
+                  
+                  row.innerHTML = `
+                    <td>${doc.id.substring(0, 8)}...</td>
+                    <td>${tourMap[booking.tourId] || 'Unknown Tour'}</td>
+                    <td>${booking.customerName || 'N/A'}</td>
+                    <td>${bookingDate}</td>
+                    <td><span class="badge ${statusClass}">${booking.status || 'N/A'}</span></td>
+                    <td>$${(booking.amount || 0).toFixed(2)}</td>
+                  `;
+                  
+                  bookingsTable.appendChild(row);
+                });
+                
+                // Initialize DataTable
+                $(document).ready(function() {
+                  $('#bookingsTable').DataTable({
+                    "pageLength": 5,
+                    "lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]]
+                  });
+                });
+              })
+              .catch(error => {
+                console.error("Error getting tour details: ", error);
+              });
+          })
+          .catch(error => {
+            console.error("Error getting recent bookings: ", error);
+          });
+      }
+    });
+  </script>
+</body>
+</html>
