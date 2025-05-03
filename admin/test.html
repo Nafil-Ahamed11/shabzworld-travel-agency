@@ -4,19 +4,198 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Add Tour Package</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      padding: 40px 0;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: none;
+    }
+    .card-header {
+      background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+      color: white;
+      border-radius: 15px 15px 0 0 !important;
+      padding: 20px;
+    }
+    .form-label {
+      font-weight: 500;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+      border: none;
+      padding: 12px 24px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    }
+    .custom-file-upload {
+      border: 2px dashed #dee2e6;
+      border-radius: 8px;
+      padding: 25px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .custom-file-upload:hover {
+      border-color: #0d6efd;
+      background-color: rgba(13, 110, 253, 0.05);
+    }
+    .custom-file-upload i {
+      font-size: 32px;
+      color: #6c757d;
+      margin-bottom: 10px;
+    }
+    #image {
+      display: none;
+    }
+    .file-name {
+      margin-top: 10px;
+      display: none;
+      font-size: 14px;
+    }
+    .loading-spinner {
+      display: none;
+    }
+    .success-message {
+      display: none;
+    }
+    .image-preview-container {
+      width: 100%;
+      margin-top: 15px;
+      display: none;
+      text-align: center;
+    }
+    .image-preview {
+      max-width: 100%;
+      max-height: 250px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+    .preview-wrapper {
+      position: relative;
+      display: inline-block;
+      margin: 10px auto;
+    }
+    .remove-preview {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #dc3545;
+      color: white;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
-  <h1>Add New Tour Package</h1>
-  <form id="tourForm">
-    <input type="file" id="image" accept="image/*" required /><br><br>
-    <input type="text" id="alt" placeholder="Alt Text" required /><br><br>
-    <input type="text" id="location" placeholder="Location" required /><br><br>
-    <input type="text" id="title" placeholder="Title" required /><br><br>
-    <input type="text" id="link" placeholder="Tour Link (e.g. tour-single.html)" required /><br><br>
-    <input type="text" id="bookingLink" placeholder="Booking Link (e.g. booking.html)" required /><br><br>
-    <button type="submit">Add Tour</button>
-  </form>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card mb-5">
+          <div class="card-header text-center">
+            <h2 class="mb-0"><i class="fas fa-map-marked-alt me-2"></i>Add New Tour Package</h2>
+          </div>
+          <div class="card-body p-4">
+            <form id="tourForm">
+              <!-- Image Upload -->
+              <div class="mb-4">
+                <label for="image" class="form-label">Tour Image <span class="text-danger">*</span></label>
+                <div class="custom-file-upload" id="dropArea">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <p class="mb-0">Drag & drop image here or click to browse</p>
+                  <p class="text-muted small">Recommended size: 1200 x 800 pixels</p>
+                  <p class="file-name" id="fileName"></p>
+                </div>
+                <input type="file" id="image" accept="image/*" required class="form-control" />
+                
+                <!-- Image Preview -->
+                <div class="image-preview-container" id="imagePreviewContainer">
+                  <div class="preview-wrapper">
+                    <img id="imagePreview" class="image-preview" src="#" alt="Image Preview" />
+                    <div class="remove-preview" id="removePreview">×</div>
+                  </div>
+                </div>
+              </div>
 
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="alt" class="form-label">Alt Text <span class="text-danger">*</span></label>
+                  <input type="text" id="alt" placeholder="Brief description of the image" required class="form-control" />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="location" class="form-label">Location <span class="text-danger">*</span></label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    <input type="text" id="location" placeholder="City, Country" required class="form-control" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="title" class="form-label">Tour Title <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-heading"></i></span>
+                  <input type="text" id="title" placeholder="Captivating tour title" required class="form-control" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="link" class="form-label">Tour Link <span class="text-danger">*</span></label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-link"></i></span>
+                    <input type="text" id="link" placeholder="tour-single.html" required class="form-control" />
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="bookingLink" class="form-label">Booking Link <span class="text-danger">*</span></label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-calendar-check"></i></span>
+                    <input type="text" id="bookingLink" placeholder="booking.html" required class="form-control" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <span class="normal-text"><i class="fas fa-plus-circle me-2"></i>Add Tour Package</span>
+                  <span class="loading-spinner">
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Processing...
+                  </span>
+                </button>
+              </div>
+              
+              <div class="alert alert-success mt-3 success-message" role="alert">
+                <i class="fas fa-check-circle me-2"></i> Tour package added successfully!
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle with Popper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
   <!-- Firebase SDKs -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
@@ -39,9 +218,109 @@
     const storage = getStorage(app);
 
     const form = document.getElementById("tourForm");
+    const dropArea = document.getElementById("dropArea");
+    const fileInput = document.getElementById("image");
+    const fileName = document.getElementById("fileName");
+    const submitBtn = form.querySelector("button[type='submit']");
+    const normalText = form.querySelector(".normal-text");
+    const loadingSpinner = form.querySelector(".loading-spinner");
+    const successMessage = document.querySelector(".success-message");
 
+    // File upload interactions
+    dropArea.addEventListener("click", () => {
+      fileInput.click();
+    });
+
+    // Show file name and preview when selected
+    const imagePreviewContainer = document.getElementById("imagePreviewContainer");
+    const imagePreview = document.getElementById("imagePreview");
+    const removePreview = document.getElementById("removePreview");
+    
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length) {
+        const file = fileInput.files[0];
+        fileName.textContent = `Selected: ${file.name}`;
+        fileName.style.display = "block";
+        
+        // Show image preview
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+          imagePreviewContainer.style.display = "block";
+        }
+        reader.readAsDataURL(file);
+      } else {
+        fileName.style.display = "none";
+        imagePreviewContainer.style.display = "none";
+      }
+    });
+    
+    // Remove preview button
+    removePreview.addEventListener("click", () => {
+      imagePreviewContainer.style.display = "none";
+      fileInput.value = "";
+      fileName.style.display = "none";
+    });
+
+    // Drag and drop functionality
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropArea.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight() {
+      dropArea.classList.add('border-primary');
+      dropArea.style.backgroundColor = 'rgba(13, 110, 253, 0.05)';
+    }
+
+    function unhighlight() {
+      dropArea.classList.remove('border-primary');
+      dropArea.style.backgroundColor = '';
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      
+      if (files.length && files[0].type.startsWith('image/')) {
+        fileInput.files = files;
+        const file = files[0];
+        fileName.textContent = `Selected: ${file.name}`;
+        fileName.style.display = "block";
+        
+        // Show image preview
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+          imagePreviewContainer.style.display = "block";
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Form submission
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      
+      // Loading state
+      normalText.style.display = "none";
+      loadingSpinner.style.display = "inline-block";
+      submitBtn.disabled = true;
+      successMessage.style.display = "none";
 
       const imageFile = form.image.files[0];
       const storageRef = ref(storage, `tourImages/${Date.now()}_${imageFile.name}`);
@@ -59,11 +338,27 @@
           bookingLink: form.bookingLink.value
         });
 
-        alert("Tour package added successfully!");
+        // Show success message
+        successMessage.style.display = "block";
         form.reset();
+        fileName.style.display = "none";
+        imagePreviewContainer.style.display = "none";
+        
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // Reset button state
+        normalText.style.display = "inline-block";
+        loadingSpinner.style.display = "none";
+        submitBtn.disabled = false;
       } catch (err) {
         console.error("Error adding tour package:", err);
         alert("Failed to add tour. See console.");
+        
+        // Reset button state
+        normalText.style.display = "inline-block";
+        loadingSpinner.style.display = "none";
+        submitBtn.disabled = false;
       }
     });
   </script>
