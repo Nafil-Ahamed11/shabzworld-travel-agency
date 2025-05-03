@@ -16,6 +16,10 @@
     <link rel="shortcut icon" href="assets/images/favico.png">
     <link rel="apple-touch-icon-precomposed" href="assets/images/favico.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
@@ -48,35 +52,33 @@
                     <div class="header-top">
                         <div class="header-top-wrap flex-two">
                             <div class="header-top-right">
-                                <ul class=" flex-three">
+                                <ul class="flex-three">
                                     <li class="flex-three">
-                                        <i class="icon-day"></i>
-                                        <span>Thursday, Mar 26, 2021</span>
+                                        <i class="fas fa-calendar-day"></i>
+                                        <span id="current-date"></span>
                                     </li>
                                     <li class="flex-three">
-                                        <i class="icon-mail"></i>
+                                        <i class="fas fa-envelope"></i>
                                         <span>support@example.com</span>
                                     </li>
                                     <li class="flex-three">
-                                        <i class="icon-phone"></i>
-                                        <span>684 555-0102 490</span>
+                                        <i class="fas fa-phone"></i>
+                                        <span>+971 52 787 1020</span>
                                     </li>
-
-
-                                </ul>
+                                </ul>                                                           
                             </div>
                             <div class="header-top-left flex-two">
-                                <a href="contact.html" class="booking">
-                                    <i class="icon-19"></i>
+                                <a href="tour-package-v4.html" class="booking">
+                                    <i class="fas fa-calendar-check"></i>
                                     <span>Booking Now</span>
                                 </a>
                                 <div class="follow-social flex-two">
                                     <span>Follow Us :</span>
                                     <ul class="flex-two">
-                                        <li><a href="#"><i class="icon-icon-2"></i></a></li>
-                                        <li><a href="#"><i class="icon-icon_03"></i></a></li>
-                                        <li><a href="#"><i class="icon-x"></i></a></li>
-                                        <li><a href="#"><i class="icon-icon"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-x-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                     </ul>
                                 </div>
 
@@ -91,7 +93,7 @@
                                     <div class="inner-container flex justify-space align-center">
                                         <!-- Logo Box -->
                                         <div class="mobile-nav-toggler mobie-mt mobile-button">
-                                            <i class="icon-Vector3"></i>
+                                            <i class="fas fa-bars"></i>
                                         </div>
                                         <div class="logo-box">
                                             <div class="logo">
@@ -176,13 +178,18 @@
                 </div>
 
                 <!-- End Header Lower -->
-                <a href="#" class="header-sidebar flex-three" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    <i class="icon-Bars"></i>
+                <a 
+                    href="#" 
+                    class="header-sidebar flex-three" 
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" 
+                    aria-controls="offcanvasRight"
+                >
+                    <i class="fas fa-bars"></i>
                 </a>
 
                 <!-- Mobile Menu  -->
-                <div class="close-btn"><span class="icon flaticon-cancel-1"></span></div>
+                <div class="close-btn"><span class="icon"><i class="fas fa-times"></i></span></div>
                 <div class="mobile-menu">
                     <div class="menu-backdrop"></div>
                     <nav class="menu-box">
@@ -255,7 +262,7 @@
                                         </svg>
                                     </div>
                                     <span>Phone Number</span>
-                                    <p class="des">+1255 - 568 - 6523 <br> +1255 - 568 - 6523</p>
+                                    <p class="des">+971 52 787 1020<br> </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -278,7 +285,7 @@
                                         </svg>
                                     </div>
                                     <span>Mail Adress</span>
-                                    <p class="des">email@example.com <br> info@yourdomain.com</p>
+                                    <p class="des">shabzworldme@gmail.com<br> </p>
                                 </div>
 
                             </div>
@@ -311,24 +318,24 @@
                                         <input type="hidden" name="_captcha" value="false" />
                                         <!-- Optional: Redirect after submission -->
                                         <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html" />
-                                      
+                                    
                                         <div class="input-wrap relative">
-                                          <i class="icon-user-1-1"></i>
-                                          <input type="text" name="name" placeholder="Your Name*" required />
+                                            <i class="fas fa-user"></i>
+                                            <input type="text" name="name" placeholder="Your Name*" required />
                                         </div>
-                                      
+                                    
                                         <div class="input-wrap relative">
-                                          <i class="icon-Group-51"></i>
-                                          <input type="email" name="email" placeholder="Email Address*" required />
+                                            <i class="fas fa-envelope"></i>
+                                            <input type="email" name="email" placeholder="Email Address*" required />
                                         </div>
-                                      
+                                    
                                         <div class="input-wrap relative">
-                                          <i class="icon-content"></i>
-                                          <textarea name="message" rows="7" cols="30" placeholder="Enter Your Message here" required></textarea>
+                                            <i class="fas fa-comment-dots"></i>
+                                            <textarea name="message" rows="7" cols="30" placeholder="Enter Your Message here" required></textarea>
                                         </div>
-                                      
+                                    
                                         <button type="submit" class="btn-submit-contact">
-                                          <i class="icon-Group-121"></i> Get In Touch
+                                            <i class="fas fa-paper-plane"></i> Get In Touch
                                         </button>
                                     </form>
                                 </div>
@@ -411,7 +418,7 @@
                                 </li>
                                 <li class="flex-three">
                                     <i class="icon-Group-9"></i>
-                                    <p>684 555-0102 490</p>
+                                    <p>+971 52 787 1020</p>
                                 </li>
                                 <li class="flex-three">
                                     <i class="icon-Layer-19"></i>
@@ -565,7 +572,7 @@
                 </li>
                 <li class="flex-three">
                     <i class="icon-Group-9"></i>
-                    <p>684 555-0102 490</p>
+                    <p>+971 52 787 1020</p>
                 </li>
                 <li class="flex-three">
                     <i class="icon-Layer-19"></i>
@@ -613,6 +620,18 @@
     <script src="app/js/shortcodes.js"></script>
     <script src="app/js/main.js"></script>
     <script>
+        const dateElement = document.getElementById('current-date');
+        const now = new Date();
+
+        const options = {
+            weekday: 'long',
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+        };
+
+        dateElement.textContent = now.toLocaleDateString('en-US', options);
+
         function showSnackbar(message, type = 'success') {
           const snackbar = document.getElementById("snackbar");
           snackbar.textContent = message;
