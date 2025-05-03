@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Tour Package</title>
+</head>
+<body>
+  <h1>Add New Tour Package</h1>
+  <form id="tourForm">
+    <input type="file" id="image" accept="image/*" required /><br><br>
+    <input type="text" id="alt" placeholder="Alt Text" required /><br><br>
+    <input type="text" id="location" placeholder="Location" required /><br><br>
+    <input type="text" id="title" placeholder="Title" required /><br><br>
+    <input type="text" id="link" placeholder="Tour Link (e.g. tour-single.html)" required /><br><br>
+    <input type="text" id="bookingLink" placeholder="Booking Link (e.g. booking.html)" required /><br><br>
+    <button type="submit">Add Tour</button>
+  </form>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js";
+
+    // 🔁 Replace this with your actual Firebase config
+    const firebaseConfig = {
+    apiKey: "AIzaSyAqzjDSYawZr9IdPR8Yr5pIhTxdei10DRA",
+    authDomain: "travel-agency-3ea70.firebaseapp.com",
+    projectId: "travel-agency-3ea70",
+    storageBucket: "travel-agency-3ea70.firebasestorage.app",
+    messagingSenderId: "630304664282",
+    appId: "1:630304664282:web:12a885b210b77cf77f53e3",
+    measurementId: "G-GM0QYDSV1F"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    const form = document.getElementById("tourForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const imageFile = form.image.files[0];
+      const storageRef = ref(storage, `tourImages/${Date.now()}_${imageFile.name}`);
+
+      try {
+        const snapshot = await uploadBytes(storageRef, imageFile);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+
+        await addDoc(collection(db, "tourPackages"), {
+          image: downloadURL,
+          alt: form.alt.value,
+          location: form.location.value,
+          title: form.title.value,
+          link: form.link.value,
+          bookingLink: form.bookingLink.value
+        });
+
+        alert("Tour package added successfully!");
+        form.reset();
+      } catch (err) {
+        console.error("Error adding tour package:", err);
+        alert("Failed to add tour. See console.");
+      }
+    });
+  </script>
+</body>
+</html>

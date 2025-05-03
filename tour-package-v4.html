@@ -22,11 +22,11 @@
 <body class="body header-fixed ">
     <style>
         .tour-listing-image img {
-            width: 100%;
-            height:300px; 
-            object-fit: cover; 
-            image-rendering: auto;
-            border-radius: 8px;
+        width: 100%;
+        height:300px; 
+        object-fit: cover; 
+        image-rendering: auto;
+        border-radius: 8px;
         }
     </style>
 
@@ -69,7 +69,7 @@
                                 </ul>
                             </div>
                             <div class="header-top-left flex-two">
-                                <a href="contact.html" class="booking">
+                                <a href="contact-us.html" class="booking">
                                     <i class="icon-19"></i>
                                     <span>Booking Now</span>
                                 </a>
@@ -99,7 +99,7 @@
                                         <div class="logo-box">
                                             <div class="logo">
                                                 <a href="index.html">
-                                                    <img src="assests/images/logo_test-removebg-preview.png" alt="Logo">
+                                                    <img src="assets/images/logo.png" alt="Logo">
                                                 </a>
                                             </div>
                                         </div>
@@ -115,9 +115,9 @@
                                                         <li class="dropdown2 current">
                                                             <a href="tour-package-v4.html">Tour Packages</a>
                                                         </li>
-                                                        <li class="dropdown2"><a href="tour-destination-v2.html">Destination</a>
+                                                        <li class="dropdown2"><a href="#">Destination</a>
                                                         </li>
-                                                        <li><a href="contact.html">Contact</a></li>
+                                                        <li><a href="contact-us.html">Contact</a></li>
                                                     </ul>
                                                 </div>
                                             </nav>
@@ -470,7 +470,7 @@
                             </div>
                         </form>
                         <div class="row" id="tour-container"></div>
-                        <script>
+                        <!-- <script>
                             const tourData = [
                               {
                                 image: "./assests/images/tour-package/pexels-jackson-jacob-143967477-20584924.jpg",
@@ -509,7 +509,7 @@
                                 </div>
                               `;
                             });
-                          </script>
+                          </script> -->
                 </section>
                 <!-- Widget archieve tour -->
 
@@ -579,7 +579,7 @@
                                     <a href="blog.html">Blog Insights</a>
                                 </li>
                                 <li>
-                                    <a href="contact.html">Contact</a>
+                                    <a href="contact-us.html">Contact</a>
                                 </li>
                             </ul>
 
@@ -740,6 +740,48 @@
         </div>
     </div>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+    
+        const firebaseConfig = {
+        apiKey: "AIzaSyAqzjDSYawZr9IdPR8Yr5pIhTxdei10DRA",
+        authDomain: "travel-agency-3ea70.firebaseapp.com",
+        projectId: "travel-agency-3ea70",
+        storageBucket: "travel-agency-3ea70.firebasestorage.app",
+        messagingSenderId: "630304664282",
+        appId: "1:630304664282:web:12a885b210b77cf77f53e3",
+        measurementId: "G-GM0QYDSV1F"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+    
+        const container = document.getElementById("tour-container");
+    
+        async function loadTours() {
+          const querySnapshot = await getDocs(collection(db, "tourPackages"));
+          querySnapshot.forEach((doc) => {
+            const tour = doc.data();
+            container.innerHTML += `
+              <div class="col-sm-6 col-xl-3 mb-32">
+                <div class="tour-listing box-sd">
+                  <a href="${tour.link}" class="tour-listing-image">
+                    <img src="${tour.image}" alt="${tour.alt}">
+                  </a>
+                  <div class="tour-listing-content">
+                    <span class="map"><i class="fas fa-map-marker-alt"></i>${tour.location}</span>
+                    <h3 class="title-tour-list"><a href="${tour.link}">${tour.title}</a></h3>
+                    <a href="${tour.bookingLink}" class="btn btn-primary mt-3 w-100">Book Now</a>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+        }
+    
+        loadTours();
+      </script>
     <!-- Javascript -->
     <script src="app/js/jquery.min.js"></script>
     <script src="app/js/jquery.nice-select.min.js"></script>
