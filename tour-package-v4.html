@@ -474,46 +474,6 @@
                             </div>
                         </form>
                         <div class="row" id="tour-container"></div>
-                        <!-- <script>
-                            const tourData = [
-                              {
-                                image: "./assests/images/tour-package/pexels-jackson-jacob-143967477-20584924.jpg",
-                                alt: "Dubai Frame Image",
-                                location: "Dubai Frame",
-                                title: "Dubai Frame Skip-the-Line Tickets",
-                                link: "tour-single.html",
-                                bookingLink: "booking.html"
-                              },
-                              {
-                                image: "./assests/images/tour-package/pexels-shukran-1534411.jpg",
-                                alt: "Burj Khalifa Image",
-                                location: "Visit Burj Khalifa",
-                                title: "Burj Khalifa Tour",
-                                link: "tour-single.html",
-                                bookingLink: "booking.html"
-                              },
-                              // Add more tour items here as needed
-                            ];
-                          
-                            const container = document.getElementById("tour-container");
-                          
-                            tourData.forEach(tour => {
-                              container.innerHTML += `
-                                <div class="col-sm-6 col-xl-3 mb-32">
-                                  <div class="tour-listing box-sd">
-                                    <a href="${tour.link}" class="tour-listing-image">
-                                      <img src="${tour.image}" alt="${tour.alt}">
-                                    </a>
-                                    <div class="tour-listing-content">
-                                      <span class="map"><i class="fas fa-map-marker-alt"></i>${tour.location}</span>
-                                      <h3 class="title-tour-list"><a href="${tour.link}">${tour.title}</a></h3>
-                                      <a href="${tour.bookingLink}" class="btn btn-primary mt-3 w-100">Book Now</a>
-                                    </div>
-                                  </div>
-                                </div>
-                              `;
-                            });
-                          </script> -->
                 </section>
                 <!-- Widget archieve tour -->
 
@@ -902,8 +862,16 @@
                   </a>
                   <div class="tour-listing-content">
                     <span class="map"><i class="fas fa-map-marker-alt"></i>${tour.location}</span>
+                     <div class="review">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                             <span>(1 Review)</span>
+                     </div>
                     <h3 class="title-tour-list"><a href="${tour.link}">${tour.title}</a></h3>
-                    <button class="btn btn-primary mt-3 w-100" onclick="openBookingModal('${tour.title}')">Book Now</button>
+                    <button class="btn btn-success mt-3 w-100" onclick="openBookingModal('${tour.title}')">Book Now</button>
                   </div>
                 </div>
               </div>
