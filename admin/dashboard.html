@@ -173,169 +173,40 @@
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-  <!-- Firebase Config Script -->
-  <script src="../assets/js/firebase-config.js"></script>
-  
-  <!-- Dashboard Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check if user is logged in and is an admin
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          // Check if user is admin
-          firebase.firestore().collection('users').doc(user.uid)
-            .get().then((doc) => {
-              if (!doc.exists || doc.data().role !== 'admin') {
-                // Not an admin, redirect to home
-                window.location.href = '../index.html';
-              } else {
-                // User is admin, load dashboard data
-                loadDashboardData();
-              }
-            }).catch(error => {
-              console.error("Error checking user role:", error);
-              window.location.href = '../index.html';
-            });
-        } else {
-          // Not logged in, redirect to login
-          window.location.href = '../login.html';
-        }
-      });
-      
-      // Logout functionality
-      document.getElementById('logout-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        firebase.auth().signOut().then(() => {
-          window.location.href = '../login.html';
-        }).catch((error) => {
-          console.error("Error signing out: ", error);
-        });
-      });
-      
-      // Function to load dashboard data
-      function loadDashboardData() {
-        // Get total tours
-        firebase.firestore().collection('tours').get()
-          .then(snapshot => {
-            document.getElementById('total-tours').textContent = snapshot.size;
-          })
-          .catch(error => {
-            console.error("Error getting tours: ", error);
-          });
-        
-        // Get total bookings
-        firebase.firestore().collection('bookings').get()
-          .then(snapshot => {
-            document.getElementById('total-bookings').textContent = snapshot.size;
-            
-            // Calculate revenue
-            let revenue = 0;
-            snapshot.forEach(doc => {
-              revenue += doc.data().amount || 0;
-            });
-            document.getElementById('total-revenue').textContent = '$' + revenue.toFixed(2);
-          })
-          .catch(error => {
-            console.error("Error getting bookings: ", error);
-          });
-        
-        // Get total users
-        firebase.firestore().collection('users').get()
-          .then(snapshot => {
-            document.getElementById('total-users').textContent = snapshot.size;
-          })
-          .catch(error => {
-            console.error("Error getting users: ", error);
-          });
-        
-        // Get recent bookings
-        firebase.firestore().collection('bookings')
-          .orderBy('bookingDate', 'desc')
-          .limit(10)
-          .get()
-          .then(snapshot => {
-            const bookingsTable = document.getElementById('recent-bookings');
-            bookingsTable.innerHTML = '';
-            
-            if (snapshot.empty) {
-              bookingsTable.innerHTML = '<tr><td colspan="6" class="text-center">No bookings found</td></tr>';
-              return;
-            }
-            
-            // Get all tour IDs from bookings
-            const tourIds = new Set();
-            snapshot.forEach(doc => {
-              if (doc.data().tourId) {
-                tourIds.add(doc.data().tourId);
-              }
-            });
-            
-            // Get tour details
-            const tourPromises = Array.from(tourIds).map(tourId => 
-              firebase.firestore().collection('tours').doc(tourId).get()
-            );
-            
-            Promise.all(tourPromises)
-              .then(tourDocs => {
-                // Create a map of tour IDs to tour names
-                const tourMap = {};
-                tourDocs.forEach(doc => {
-                  if (doc.exists) {
-                    tourMap[doc.id] = doc.data().title;
-                  }
-                });
-                
-                // Display bookings with tour names
-                snapshot.forEach(doc => {
-                  const booking = doc.data();
-                  const row = document.createElement('tr');
-                  
-                  // Format date
-                  let bookingDate = 'N/A';
-                  if (booking.bookingDate) {
-                    const date = booking.bookingDate.toDate();
-                    bookingDate = date.toLocaleDateString();
-                  }
-                  
-                  // Status badge class
-                  let statusClass = 'bg-secondary';
-                  if (booking.status === 'confirmed') {
-                    statusClass = 'bg-success';
-                  } else if (booking.status === 'pending') {
-                    statusClass = 'bg-warning text-dark';
-                  } else if (booking.status === 'cancelled') {
-                    statusClass = 'bg-danger';
-                  }
-                  
-                  row.innerHTML = `
-                    <td>${doc.id.substring(0, 8)}...</td>
-                    <td>${tourMap[booking.tourId] || 'Unknown Tour'}</td>
-                    <td>${booking.customerName || 'N/A'}</td>
-                    <td>${bookingDate}</td>
-                    <td><span class="badge ${statusClass}">${booking.status || 'N/A'}</span></td>
-                    <td>$${(booking.amount || 0).toFixed(2)}</td>
-                  `;
-                  
-                  bookingsTable.appendChild(row);
-                });
-                
-                // Initialize DataTable
-                $(document).ready(function() {
-                  $('#bookingsTable').DataTable({
-                    "pageLength": 5,
-                    "lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]]
-                  });
-                });
-              })
-              .catch(error => {
-                console.error("Error getting tour details: ", error);
-              });
-          })
-          .catch(error => {
-            console.error("Error getting recent bookings: ", error);
-          });
-      }
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+<script>
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAqzjDSYawZr9IdPR8Yr5pIhTxdei10DRA",
+    authDomain: "travel-agency-3ea70.firebaseapp.com",
+    projectId: "travel-agency-3ea70",
+    storageBucket: "travel-agency-3ea70.appspot.com",
+    messagingSenderId: "630304664282",
+    appId: "1:630304664282:web:12a885b210b77cf77f53e3"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  auth.onAuthStateChanged((user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+
+  document.getElementById("logout-btn").addEventListener("click", () => {
+    auth.signOut().then(() => {
+      alert("You have been logged out.");
+      window.location.href = "login.html";
+    }).catch((error) => {
+      console.error("Logout error:", error);
+      alert("Failed to logout. Try again.");
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
