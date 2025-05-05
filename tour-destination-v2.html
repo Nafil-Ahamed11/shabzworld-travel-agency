@@ -15,7 +15,11 @@
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/images/favico.png">
     <link rel="apple-touch-icon-precomposed" href="assets/images/favico.png">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 </head>
 
 <body class="body header-fixed ">
@@ -41,35 +45,33 @@
                     <div class="header-top">
                         <div class="header-top-wrap flex-two">
                             <div class="header-top-right">
-                                <ul class=" flex-three">
+                                <ul class="flex-three">
                                     <li class="flex-three">
-                                        <i class="icon-day"></i>
-                                        <span>Thursday, Mar 26, 2021</span>
+                                        <i class="fas fa-calendar-day"></i>
+                                        <span id="current-date"></span>
                                     </li>
                                     <li class="flex-three">
-                                        <i class="icon-mail"></i>
-                                        <span>support@example.com</span>
+                                        <i class="fas fa-envelope"></i>
+                                        <span>shabzworldme@gmail.com</span>
                                     </li>
                                     <li class="flex-three">
-                                        <i class="icon-phone"></i>
-                                        <span>684 555-0102 490</span>
+                                        <i class="fas fa-phone"></i>
+                                        <span>+971 52 787 1020</span>
                                     </li>
-
-
-                                </ul>
+                                </ul>                                                           
                             </div>
                             <div class="header-top-left flex-two">
-                                <a href="contact.html" class="booking">
-                                    <i class="icon-19"></i>
+                                <a href="tour-package-v4.html" class="booking">
+                                    <i class="fas fa-calendar-check"></i>
                                     <span>Booking Now</span>
                                 </a>
                                 <div class="follow-social flex-two">
                                     <span>Follow Us :</span>
                                     <ul class="flex-two">
-                                        <li><a href="#"><i class="icon-icon-2"></i></a></li>
-                                        <li><a href="#"><i class="icon-icon_03"></i></a></li>
-                                        <li><a href="#"><i class="icon-x"></i></a></li>
-                                        <li><a href="#"><i class="icon-icon"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-x-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                     </ul>
                                 </div>
 
@@ -84,12 +86,12 @@
                                     <div class="inner-container flex justify-space align-center">
                                         <!-- Logo Box -->
                                         <div class="mobile-nav-toggler mobie-mt mobile-button">
-                                            <i class="icon-Vector3"></i>
+                                            <i class="fas fa-bars"></i>
                                         </div>
                                         <div class="logo-box">
                                             <div class="logo">
                                                 <a href="index.html">
-                                                    <img src="assets/images/logo.png" alt="Logo">
+                                                    <img src="assests/images/logo_test-removebg-preview.png" alt="Logo">
                                                 </a>
                                             </div>
                                         </div>
@@ -99,22 +101,22 @@
                                                 <div class="navbar-collapse collapse clearfix"
                                                     id="navbarSupportedContent">
                                                     <ul class="navigation clearfix">
-                                                        <li class="">
+                                                        <li class="dropdown2">
                                                             <a href="home.html">Home</a>
                                                         </li>
-                                                        <li class="">
-                                                            <a href="#">Tour Package</a>
+                                                        <li class="dropdown2">
+                                                            <a href="tour-package-v4.html">Tour Packages</a>
                                                         </li>
-                                                        <li class="current"><a href="#">Destination</a>
+                                                        <li class="dropdown2"><a href="tour-destination-v2.html">Destination</a>
                                                         </li>
-                                                        <li><a href="contact.html">Contact</a></li>
+                                                        <li class="current"><a href="contact.html">Contact</a></li>
                                                     </ul>
                                                 </div>
                                             </nav>
                                             <!-- Main Menu End-->
                                         </div>
                                         <div class="header-account flex align-center">
-                                            <div class="language">
+                                            <!-- <div class="language">
                                                 <div class="nice-select" tabindex="0">
                                                     <img src="./assets/images/page/language.svg" alt=""><span
                                                         class="current">English</span>
@@ -134,16 +136,6 @@
                                                         <li data-value="Canada" class="option"><img
                                                                 src="./assets/images/page/language.svg" alt="">Canada
                                                         </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="currency">
-                                                <div class="nice-select" tabindex="0">
-                                                    <span class="current">USD</span>
-                                                    <ul class="list">
-                                                        <li data-value class="option selected">USD</li>
-                                                        <li data-value="vnd" class="option">VND</li>
-                                                        <li data-value="ero" class="option">ERO</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -168,7 +160,7 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -179,13 +171,18 @@
                 </div>
 
                 <!-- End Header Lower -->
-                <a href="#" class="header-sidebar flex-three" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    <i class="icon-Bars"></i>
+                <a 
+                    href="#" 
+                    class="header-sidebar flex-three" 
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" 
+                    aria-controls="offcanvasRight"
+                >
+                    <i class="fas fa-bars"></i>
                 </a>
 
                 <!-- Mobile Menu  -->
-                <div class="close-btn"><span class="icon flaticon-cancel-1"></span></div>
+                <div class="close-btn"><span class="icon"><i class="fas fa-times"></i></span></div>
                 <div class="mobile-menu">
                     <div class="menu-backdrop"></div>
                     <nav class="menu-box">
@@ -200,6 +197,7 @@
                 <!-- End Mobile Menu -->
 
             </header>
+            <!-- End Main Header -->
             <!-- End Main Header -->
             <main id="main">
 
@@ -224,62 +222,56 @@
                     <div class="tf-container">
                         <div class="row">
                             <div class="col-md-5 mb-37">
-                                <a href="single-destination.html" class="destination-style relative">
-                                    <span class="tour">3 tours</span>
-                                    <img src="./assests/images/tour/Burj-Khalifa.png" alt="">
+                                <a href="" class="destination-style relative">
+                                    <img src="./assests/images/tour/1-1.png" alt="">
                                     <div class="destination-content">
                                         <div class="travel font-yes text-white">Travel to</div>
-                                        <p class="text-white">Switzerland</p>
+                                        <p class="text-white text-uppercase">AURA SKYPOOL, Dubai</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-4 mb-37">
-                                <a href="single-destination.html" class="destination-style relative">
-                                    <span class="tour">3 tours</span>
-                                    <img src="./assests/images/tour/ddc.png" alt="">
+                                <a href="" class="destination-style relative">
+                                    <img src="./assests/images/tour/1.2.png" alt="">
                                     <div class="destination-content">
                                         <div class="travel font-yes text-white">Travel to</div>
-                                        <p class="text-white">Australia</p>
+                                        <p class="text-white text-uppercase">OFFROAD, Dubai</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-3 mb-37">
-                                <a href="single-destination.html" class="destination-style relative">
-                                    <span class="tour">3 tours</span>
-                                    <img src="./assets/images/tour/3.jpg" alt="">
+                                <a href="" class="destination-style relative">
+                                    <img src="./assests/images/tour/1.3.png" alt="">
                                     <div class="destination-content">
                                         <div class="travel font-yes text-white">Travel to</div>
-                                        <p class="text-white">London</p>
+                                        <p class="text-white text-uppercase">IMG WORLD OF ADVENTURE, Dubai</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-3 mb-37">
-                                <a href="single-destination.html" class="destination-style relative">
-                                    <span class="tour">3 tours</span>
-                                    <img src="./assets/images/tour/4.jpg" alt="">
+                                <a href="" class="destination-style relative">
+                                    <img src="./assests/images/tour/1.4.png" alt="">
                                     <div class="destination-content">
                                         <div class="travel font-yes text-white">Travel to</div>
-                                        <p class="text-white">Afghanistan</p>
+                                        <p class="text-white text-uppercase">Caucasian Camel Ride, Dubai</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-5 mb-37">
-                                <a href="single-destination.html" class="destination-style relative">
-                                    <span class="tour">3 tours</span>
-                                    <img src="./assets/images/tour/5.jpg" alt="">
+                                <a href="" class="destination-style relative">
+                                    <img src="./assests/images/tour/1.5.png" alt="">
                                     <div class="destination-content">
                                         <div class="travel font-yes text-white">Travel to</div>
-                                        <p class="text-white">Morocco</p>
+                                        <p class="text-white text-uppercase">Plam Island, Dubai</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-4 mb-37">
                                 <a href="single-destination.html" class="destination-style relative">
-                                    <span class="tour">3 tours</span>
-                                    <img src="./assets/images/tour/6.jpg" alt="">
+                                    <img src="./assests/images/tour/1.6.png" alt="">
                                     <div class="destination-content">
                                         <div class="travel font-yes text-white">Travel to</div>
-                                        <p class="text-white">Singapore</p>
+                                        <p class="text-white text-uppercase">Fountain, Dubai</p>
                                     </div>
                                 </a>
                             </div>
