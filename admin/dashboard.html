@@ -1,212 +1,507 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dubai Tours - Admin Dashboard</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <!-- DataTables CSS -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="../assets/css/admin.css">
+    <meta charset="utf-8">
+    <title>Vitour - Travel & Tour Booking HTML Template</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/app/css/app.css">
+    <link rel="stylesheet" href="/app/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/app/css/map.min.css">
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="assets/images/favico.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/images/favico.png">
+
 </head>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Sidebar -->
-      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
-        <div class="position-sticky pt-3">
-          <div class="text-center mb-4">
-            <h4 class="text-white">Dubai Tours</h4>
-            <p class="text-white-50">Admin Dashboard</p>
-          </div>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="dashboard.html">
-                <i class="fas fa-tachometer-alt me-2"></i>
-                Dashboard
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="tours.html">
-                <i class="fas fa-route me-2"></i>
-                Tours
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="bookings.html">
-                <i class="fas fa-calendar-check me-2"></i>
-                Bookings
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="users.html">
-                <i class="fas fa-users me-2"></i>
-                Users
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="logout-btn">
-                <i class="fas fa-sign-out-alt me-2"></i>
-                Logout
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
 
-      <!-- Main content -->
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Dashboard</h1>
-        </div>
+<body class="body header-fixed ">
 
-        <!-- Stats Cards -->
-        <div class="row">
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Tours</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-tours">Loading...</div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-route fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Bookings</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-bookings">Loading...</div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-calendar-check fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Users</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-users">Loading...</div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-users fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Revenue</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-revenue">Loading...</div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent Bookings Table -->
-        <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Recent Bookings</h6>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered" id="bookingsTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>Booking ID</th>
-                    <th>Tour</th>
-                    <th>Customer</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                  </tr>
-                </thead>
-                <tbody id="recent-bookings">
-                  <!-- Bookings will be loaded here -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </main>
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
     </div>
-  </div>
 
-  <!-- Include Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <!-- /preload -->
 
-  <!-- Bootstrap JS Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="wrapper">
+
+        <div id="pagee" class="clearfix">
+
+            <div class="sidebar-dashboard">
+                <div class="db-logo">
+                    <a href="index.html"><img src="/assests/images/logo/Shabz World Round Logo.png" alt="Logo"><span>shabzworld</span></a>
+                </div>
+                <div class="db-menu">
+                    <ul>
+                        <li class="active">
+                            <a href="dashboard.html">
+                                <i class="icon-Vector-9"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/my-listing.html">
+                                <i class="icon-Group-81"></i>
+                                <span>My Listing</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/add-tour.html">
+                                <i class="icon-Group-91"></i>
+                                <span>Add Tour</span>
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a href="login.html">
+                                <i class="icon-turn-off-1"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+            </div>
+
+            <div class="has-dashboard">
+                <!-- Main Header -->
+                <header class="main-header flex">
+                    <!-- Header Lower -->
+                    <div id="header">                   
+                        <div class="header-dashboard">
+                            <div class="tf-container full">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="inner-container flex justify-space align-center">
+                                            <!-- Logo Box -->
+                                            <div class="header-search flex-three">
+                                                <div class="icon-bars">
+                                                    <i class="icon-Vector3"></i>
+                                                </div>
+                                                <form action="/" class="search-dashboard">
+                                                    <i class="icon-Vector5"></i>
+                                                    <input type="search" placeholder="Search tours">
+                                                </form>
+
+                                            </div>
+                                            <div class="nav-outer flex align-center">
+                                                <!-- Main Menu -->
+                                                <nav class="main-menu show navbar-expand-md">
+                                                    <div class="navbar-collapse collapse clearfix"
+                                                        id="navbarSupportedContent">
+                                                        <ul class="navigation clearfix">
+                                                            <li class="current"><a href="#"></a>
+                                                            </li>
+                                                            <li><a href="contact-us.html"></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </nav>
+                                                <!-- Main Menu End-->
+                                            </div>
+                                            <div class="header-account flex align-center">                                              
+                                            
+                                                <div class="dropdown notification">
+                                                    <a class="icon-notification" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="icon-notification-1"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                      <li>
+                                                        <div class="message-item  flex-three">
+                                                            <div class="image">
+                                                                <i class="icon-26"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="body-title">Discount available</div>
+                                                                <div class="text-tiny">Morbi sapien massa, ultricies at rhoncus at, ullamcorper nec diam</div>
+                                                            </div>
+                                                        </div>
+                                                      </li>
+                                                      <li>
+                                                        <div class="message-item  flex-three">
+                                                            <div class="image">
+                                                                <i class="icon-26"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="body-title">Discount available</div>
+                                                                <div class="text-tiny">Morbi sapien massa, ultricies at rhoncus at, ullamcorper nec diam</div>
+                                                            </div>
+                                                        </div>
+                                                      </li>
+                                                      <li>
+                                                        <div class="message-item  flex-three">
+                                                            <div class="image">
+                                                                <i class="icon-26"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="body-title">Discount available</div>
+                                                                <div class="text-tiny">Morbi sapien massa, ultricies at rhoncus at, ullamcorper nec diam</div>
+                                                            </div>
+                                                        </div>
+                                                      </li>
+                                                      
+                                                    </ul>
+                                                </div>                                                                                       
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End Header Lower -->
+
+
+                    <!-- Mobile Menu  -->
+                    <div class="close-btn"><span class="icon flaticon-cancel-1"></span></div>
+                    <div class="mobile-menu">
+                        <div class="menu-backdrop"></div>
+                        <nav class="menu-box">
+                            <div class="nav-logo"><a href="index.html">
+                                    <img src="assets/images/logo2.png" alt=""></a></div>
+                            <div class="bottom-canvas">
+                                <div class="menu-outer">
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- End Mobile Menu -->
+
+                </header>
+                <!-- End Main Header -->
+                <main id="main">
+                    <section class="profile-dashboard">
+                        <div class="inner-header mb-40">
+                            <h3 class="title">Dashboard</h3>
+                            <p class="des">There are many variations of passages of Lorem Ipsum</p>
+                        </div>
+                        <div class="counter-grid-dashboard mb-70">
+                            <div class="counter-dashboard flex-three tf-countto">
+                                <div class="content">
+                                    <span>Total Tours</span>
+                                    <div class="number-counter" data-to="43216" data-speed="2000"> Coming Soon</div>
+                                </div>
+                            </div>
+                            <div class="counter-dashboard flex-three tf-countto">
+                                <div class="icon flex-five">
+                                    <i class="icon-heart-1"></i>
+                                </div>
+                                <div class="content">
+                                    <span>Total bookings</span>
+                                    <div class="number-counter plus" data-to="2351" data-speed="2000"
+                                        data-waypoint-active="yes">2351</div>
+                                </div>
+                            </div>
+                            <div class="counter-dashboard flex-three tf-countto">
+                                <div class="icon flex-five">
+                                    <i class="icon-Group-1000003085"></i>
+                                </div>
+                                <div class="content">
+                                    <span>Total Users</span>
+                                    <div class="number-counter" data-to="43216" data-speed="2000"
+                                        data-waypoint-active="yes">43216</div>
+                                </div>
+                            </div>
+                            <div class="counter-dashboard flex-three tf-countto">
+                                <div class="icon flex-five">
+                                    <i class="icon-feedback"></i>
+                                </div>
+                                <div class="content">
+                                    <span>Revenue</span>
+                                    <div class="number-counter plus" data-to="2351" data-speed="2000"
+                                        data-waypoint-active="yes">2351</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xxl-8 col-xl-12">
+                                <div class="page-insight">
+                                    <!-- chart -->
+                                    <div class="wg-box">
+                                        <div class="flex-two">
+                                            <h5>Total page view</h5>
+                                            <div class="group-select">
+                                                <div class="nice-select" tabindex="0">
+                                                    <span class="current">This Week</span>
+                                                    <ul class="list">
+                                                        <li data-value class="option selected">This Week</li>
+                                                        <li data-value="Last day" class="option">Last Day</li>
+                                                        <li data-value="Last Week" class="option">Last Week</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="line-chart-1"></div>
+                                    </div>
+                                    <!-- /chart -->
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-xl-12">
+                                <div class="tfcl-card dashboard-message mb-25">
+                                    <h4 class="title mb-30">What,s New?</h4>
+                                    <ul class="message">
+                                        <li class="flex-three">
+                                            <div class="icon">
+                                                <i class="icon-Group4"></i>
+                                            </div>
+                                            <p>Congratulation Your <span class="text-main">23</span> Listing has been
+                                                approved Today</p>
+                                        </li>
+                                        <li class="flex-three">
+                                            <div class="icon">
+                                                <i class="icon-Vector-131"></i>
+                                            </div>
+                                            <p>Someone is saved your listing</p>
+                                        </li>
+                                        <li class="flex-three">
+                                            <div class="icon">
+                                                <div class="icon-Vector-141"></div>
+                                            </div>
+                                            <p>You have unread <span class="text-main">21</span> Message</p>
+                                        </li>
+                                        <li class="flex-three">
+                                            <div class="icon">
+                                                <i class="icon-Vector-131"></i>
+                                            </div>
+                                            <p>Congratulation Your <span class="text-main">22</span> Listing has
+                                                been</p>
+                                        </li>
+                                        <li class="flex-three">
+                                            <div class="icon">
+                                                <i class="icon-Vector-131"></i>
+                                            </div>
+                                            <p>Mehedii Added Favorites Your listing “Mercedez Benz 2.3”</p>
+                                        </li>
+                                        <li class="flex-three">
+                                            <div class="icon">
+                                                <i class="icon-Vector-141"></i>
+                                            </div>
+                                            <p>You have unread <span class="text-main">21</span> Message</p>
+                                        </li>
+                                        <li class="flex-three">
+                                            <div class="icon">
+                                                <i class="icon-Vector-131"></i>
+                                            </div>
+                                            <p>Congratulation Your <span class="text-main">22</span> Listing has been
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tfcl-card dashboard-reviews">
+                                    <h4 class="title mb-30">Recent Reviews</h4>
+                                    <ul>
+                                        <li class="comment-by-user flex-three">
+                                            <div class="group-author">
+                                                <img src="./assets/images/avata/avt-review.jpg" alt="image">
+                                            </div>
+                                            <div class="content">
+                                                <div class="group-name flex-one">
+                                                    <div class="review-name">Rohan De Spond</div>
+                                                    <div class="rating-wrap">
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                    </div>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, con covered many vulputate ves
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="comment-by-user flex-three">
+                                            <div class="group-author">
+                                                <img src="./assets/images/avata/avt-review2.jpg" alt="image">
+                                            </div>
+                                            <div class="content">
+                                                <div class="group-name flex-one">
+                                                    <div class="review-name">Mehedii. Has</div>
+                                                    <div class="rating-wrap">
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                    </div>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, con covered many vulputate ves
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="comment-by-user flex-three">
+                                            <div class="group-author">
+                                                <img src="./assets/images/avata/avt-review.jpg" alt="image">
+                                            </div>
+                                            <div class="content">
+                                                <div class="group-name flex-one">
+                                                    <div class="review-name">Rohan De Spond</div>
+                                                    <div class="rating-wrap">
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                    </div>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, con covered many vulputate ves
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="comment-by-user flex-three">
+                                            <div class="group-author">
+                                                <img src="./assets/images/avata/avt-review3.jpg" alt="image">
+                                            </div>
+                                            <div class="content">
+                                                <div class="group-name flex-one">
+                                                    <div class="review-name">Mehedii. Has</div>
+                                                    <div class="rating-wrap">
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                        <i class="icon-Star"></i>
+                                                    </div>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, con covered many vulputate ves
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </section>
+
+                </main>
+
+                <footer class="footer footer-dashboard">
+                    <div class="tf-container full">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <p class="text-white">Copyright © 2025 by SHABZ WORLD TOURISM All Rights Reserved</p>
+                            </div>
+                            <div class="col-xl-6">
+                                <ul class="menu-footer flex-six">
+                                    <li>
+                                        <a href="#">Privacy & Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Licensing</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Instruction</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+                <!-- Bottom -->
+            </div>
+
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+    <a id="scroll-top" class="button-go"></a>
+
+    <!-- Modal search-->
+    <div class="modal search-mobie fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <form action="/" class="search-form-mobie">
+                        <div class="search">
+                            <i class="icon-circle2017"></i>
+                            <input type="search" placeholder="Search Travel" class="search-input" autocomplete="off">
+                            <button type="button">Search</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   
-  <!-- jQuery and DataTables JS -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-
-<script>
-  // Firebase config
-  const firebaseConfig = {
-    apiKey: "AIzaSyAqzjDSYawZr9IdPR8Yr5pIhTxdei10DRA",
-    authDomain: "travel-agency-3ea70.firebaseapp.com",
-    projectId: "travel-agency-3ea70",
-    storageBucket: "travel-agency-3ea70.appspot.com",
-    messagingSenderId: "630304664282",
-    appId: "1:630304664282:web:12a885b210b77cf77f53e3"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-
-  auth.onAuthStateChanged((user) => {
-    if (!user) {
-      window.location.href = "login.html";
-    }
-  });
-
-  document.getElementById("logout-btn").addEventListener("click", () => {
-    auth.signOut().then(() => {
-      alert("You have been logged out.");
-      window.location.href = "login.html";
-    }).catch((error) => {
-      console.error("Logout error:", error);
-      alert("Failed to logout. Try again.");
-    });
-  });
-</script>
+    <script>
+        // Firebase config
+        const firebaseConfig = {
+          apiKey: "AIzaSyAqzjDSYawZr9IdPR8Yr5pIhTxdei10DRA",
+          authDomain: "travel-agency-3ea70.firebaseapp.com",
+          projectId: "travel-agency-3ea70",
+          storageBucket: "travel-agency-3ea70.appspot.com",
+          messagingSenderId: "630304664282",
+          appId: "1:630304664282:web:12a885b210b77cf77f53e3"
+        };
+      
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+      
+        auth.onAuthStateChanged((user) => {
+          if (!user) {
+            window.location.href = "login.html";
+          }
+        });
+      
+        document.getElementById("logout-btn").addEventListener("click", () => {
+          auth.signOut().then(() => {
+            alert("You have been logged out.");
+            window.location.href = "login.html";
+          }).catch((error) => {
+            console.error("Logout error:", error);
+            alert("Failed to logout. Try again.");
+          });
+        });
+      </script>
+      
+    <!-- Javascript -->
+    <script src="/app/js/jquery.min.js"></script>
+    <script src="/app/s/jquery.nice-select.min.js"></script>
+    <script src="/app/js/bootstrap.min.js"></script>
+    <script src="/app/js/bootstrap-select.min.js"></script>
+    <script src="/app/js/tinymce/tinymce.min.js"></script>
+    <script src="/app/js/tinymce/tinymce-custom.js"></script>
+    <script src="/app/js/swiper-bundle.min.js"></script>
+    <script src="/app/js/swiper.js"></script>
+    <script src="/app/js/plugin.js"></script>
+    <script src="/app/js/map.min.js"></script>
+    <script src="/app/js/map.js"></script>
+    <script src="/app/js/countto.js"></script>
+    <script src="/app/js/apexcharts.js"></script>
+    <script src="/app/js/line-chart.js"></script>
+    <script src="/app/js/shortcodes.js"></script>
+    <script src="/app/js/main.js"></script>
 
 </body>
+
 </html>

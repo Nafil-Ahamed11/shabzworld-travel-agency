@@ -14,6 +14,51 @@
         <!-- Add Fancybox CSS & JS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     </head>
+    <style>
+        .service-box {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+    
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+        }
+    
+        .icon-wrap {
+            color: #155448;
+            margin-bottom: 16px;
+        }
+    
+        .icon-wrap i {
+            font-size: 2.5rem;
+        }
+    
+        .service-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+    
+        .service-desc {
+            font-size: 0.95rem;
+            color: #555;
+        }
+    
+        .service-items .col-md-4, 
+        .service-items .col-lg-3 {
+            display: flex;
+        }
+    </style>
+    
     <body class="body header-fixed counter-scroll">
         <div class="preload preload-container">
             <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
@@ -41,14 +86,14 @@
                                             </li>
                                             <li class="flex-three">
                                                 <i class="fas fa-envelope"></i>
-                                                <span>Mail Us: shabzworldme@gmail.com</span>
+                                                <span>Mail Us: info@shabzworld.com</span>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="header-top-left flex-two">
                                         <ul class="menu-right-top flex-three ">
                                             <li>
-                                                <a href="#">About</a>
+                                                <a href="/about-us.html">About</a>
                                             </li>
                                             <li>
                                                 <a href="#">Faqs </a>
@@ -116,21 +161,6 @@
                                                     <!-- Main Menu End-->
                                                 </div>
                                                 <div class="header-account flex align-center">
-                                                    <!-- <div class="search-mobie relative">
-                                                        <div class="dropdown">
-                                                            <a type="button" class="show-search" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="icon-Vector5"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu top-search">
-                                                                <form action="/" id="search-bar-widget">
-                                                                    <input type="text" placeholder="Search here...">
-                                                                    <button type="button">
-                                                                        <i class="icon-search-2"></i>
-                                                                    </button>
-                                                                </form>
-                                                            </ul>
-                                                        </div>
-                                                    </div> -->
                                                     <div class="address-wrap-right flex-three ">
                                                         <div class="icon flex-five">
                                                             <i class="fas fa-phone-alt"></i>
@@ -179,16 +209,15 @@
                             <div class="row ">
                                 <div class="col-10 col-xl-7">
                                     <div class="home4-content z-index3">
-                                        <span class="sub-title font-yes text-second fs-28-46 wow fadeInUp animated">Explore
-                                        the world</span>
                                         <h1 class="title-slide text-white mb-40 wow fadeInUp animated">
-                                            <!-- Adventure--> Design
-                                        
+                                            <!-- Adventure--> Discover the joy of
                                             <span class="animationtext clip text-main">
                                                 
                                                 <span class="cd-words-wrapper">
-                                                    <span class="item-text is-visible">blissful</span>
-                                                    <span class="item-text is-hidden">blissful</span>
+                                                    <span class="item-text is-visible">luxurious</span>
+                                                    <span class="item-text is-hidden">authentic</span>
+                                                    <span class="item-text is-hidden">unforgettable</span>
+                                                    <span class="item-text is-hidden">meaningful</span>
                                                 </span>
                                             </span><br>
                                             journey                                                                     
@@ -220,25 +249,15 @@
                                         <div class="image-about-item relative about-wrap-left wow fadeInLeft animated " data-wow-delay="0.1s">
                                             <img src="./assests/images/about-us/about-h42.jpg" alt="image">
                                             <img src="./assests/images/page/shape5.1.png" alt="image" class="shape-about-h4">
-                                            <span class="quote">25,000 + Customer Worldwide</span>
                                         </div>
                                         <div class="image-about-item relative about-wrap-right wow fadeInUp animated " data-wow-delay="0.1s">
                                             <img src="./assests/images/about-us/about-4.png" alt="image">
                                             <img src="./assests/images/page/shape5.1.png" alt="image" class="shape-about-h4">
                                         </div>
-                                        <div class="box-year center wow zoomIn animated" data-wow-delay="0.1s">
-                                            <span class="number">25</span>
-                                            <p>
-                                                year of <br>experience
-                                            </p>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-lg-6 inner-content-about">
                                     <div class="mb-30">
-                                        <span class="sub-title-heading text-main font-yes fs-28-46 wow fadeInUp animated">“The world is a book,
-                                            and those who do not travel
-                                            read only a page “</span>
                                         <h2 class="title-heading mb-18 wow fadeInUp animated">
                                             What We Do? 
                                         </h2>
@@ -256,7 +275,7 @@
                                                 <div class="icon relative">
                                                     <!-- Updated icon here -->
                                                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M12 2L15 8H9L12 2ZM12 22L9 16H15L12 22ZM2 12L8 15V9L2 12ZM22 12L16 9V15L22 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" fill="currentColor"/>
                                                     </svg>
                                                 </div>
                                                 <div class="content">
@@ -272,8 +291,8 @@
                                             <div class="icon-box-style6">
                                                 <div class="icon relative">
                                                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M3 9L12 2L21 9V20C21 20.55 20.55 21 20 21H4C3.45 21 3 20.55 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M8 2v2M16 2v2M3 8h18M4 6h16a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M9 14l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                                     </svg>
                                                 </div>
                                                 <div class="content">
@@ -286,24 +305,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!-- <div class="flex-three btn-wrap-about  mb-30 ">
-                                        <a href="#" class="btn-main wow fadeInUp animated">
-                                            <p class="btn-main-text">More about us</p>
-                                            <p class="iconer">
-                                                <i class="icon-arrow-right"></i>
-                                            </p>
-                                        </a>
-                                        <div class="profile flex-three wow fadeInUp animated">
-                                            <div class="image">
-                                                <img src="./assests/images/avata/10.jpg" alt="">
-                                            </div>
-                                            <div class="content">
-                                                <img src="./assests/images/page/name.png" alt="">
-                                                <span class="text-main">Ceo & Founder</span>
-                                            </div>
-                                        </div>
-                                    </div> -->
+
                                     <div class="map-check flex-three wow fadeInUp animated">
                                         <div class="icon">
                                             <svg width="33" height="30" viewBox="0 0 33 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -321,7 +323,7 @@
                                                 </defs>
                                             </svg>
                                         </div>
-                                        <span class="text-main">Checkout Beautiful Places Arround the World.</span>
+                                        <span class="text-main mt-3">Checkout Beautiful Places Arround the World.</span>
                                     </div>
                                 </div>
                             </div>
@@ -331,18 +333,17 @@
                         <div class="tf-container">
                             <div class="row al-i-end mb-22">
                                 <div class="col-md-6">
-                                    <span class="sub-title-heading text-main font-yes fs-28-46 wow fadeInUp animated">Populer
-                                    Activities</span>
+                                    <span class="sub-title-heading text-main font-yes fs-28-46 wow fadeInUp animated">Popular Activities</span>
                                     <h2 class="title-heading wow fadeInUp animated">Extras features</h2>
                                 </div>
                                 <div class="col-md-6 wow fadeInUp animated">
                                     <p class="des">
                                         At Shabz World Tourism, every moment is a chance to create unforgettable memories. Our mission is to help you discover the world in the most blissful, enriching, and authentic way possible.
-                                        </p>                                        
+                                    </p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class=" col-lg-4">
+                                <div class="col-lg-4">
                                     <div class="image-feature3">
                                         <div class="image-feature relative">
                                             <img src="./assests/images/feature/istockphoto-1442260952-612x612.jpg" alt="image">
@@ -352,59 +353,59 @@
                                 </div>
                                 <div class="col-lg-8 box-feature-wrap">
                                     <div class="row">
-                                        <div class="col-md-6 mb-32 wow fadeInUp animated " data-wow-delay="0.1s">
+                                        <!-- Safety First Always -->
+                                        <div class="col-md-6 mb-32 wow fadeInUp animated" data-wow-delay="0.1s">
                                             <div class="tf-icon-box icon-box-style2 flex relative">
                                                 <div class="icon">
-                                                    <i class="fas fa-shield-alt"></i> 
+                                                    <i class="fas fa-shield-alt"></i>
                                                 </div>
                                                 <div class="content">
                                                     <h6 class="title-icon">
                                                         <a href="#">Safety first always</a>
                                                     </h6>
-                                                    <p class="des-icon">Welcome to our Print 128 web
-                                                    company that offers a wide </p>
+                                                    <p class="des-icon">Your safety is our top priority during every journey.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mb-32 wow fadeInUp animated " data-wow-delay="0.2s">
+                                        <!-- Trusted Travel Guide -->
+                                        <div class="col-md-6 mb-32 wow fadeInUp animated" data-wow-delay="0.2s">
                                             <div class="tf-icon-box icon-box-style2 flex relative">
                                                 <div class="icon">
-                                                    <i class="fas fa-plane"></i>
+                                                    <i class="fas fa-user-tie"></i> <!-- Changed from fa-plane -->
                                                 </div>
                                                 <div class="content">
                                                     <h6 class="title-icon">
                                                         <a href="#">Trusted travel guide</a>
                                                     </h6>
-                                                    <p class="des-icon">Welcome to our Print 128 web
-                                                    company that offers a wide </p>
+                                                    <p class="des-icon">Explore with experienced and reliable tour experts.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mb-32 wow fadeInUp animated " data-wow-delay="0.3s">
+                                        <!-- Personalized Trips -->
+                                        <div class="col-md-6 mb-32 wow fadeInUp animated" data-wow-delay="0.3s">
                                             <div class="tf-icon-box icon-box-style2 flex relative">
                                                 <div class="icon">
                                                     <i class="fas fa-map-marked-alt"></i>
                                                 </div>
                                                 <div class="content">
                                                     <h6 class="title-icon">
-                                                        <a href="#">Pesonalized Trips</a>
+                                                        <a href="#">Personalized Trips</a>
                                                     </h6>
-                                                    <p class="des-icon">Welcome to our Print 128 web
-                                                    company that offers a wide </p>
+                                                    <p class="des-icon">Tailor-made experiences designed just for you.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mb-32 wow fadeInUp animated " data-wow-delay="0.4s">
+                                        <!-- Adventure & Climbing -->
+                                        <div class="col-md-6 mb-32 wow fadeInUp animated" data-wow-delay="0.4s">
                                             <div class="tf-icon-box icon-box-style2 flex relative">
                                                 <div class="icon">
                                                     <i class="fas fa-mountain"></i>
                                                 </div>
                                                 <div class="content">
                                                     <h6 class="title-icon">
-                                                        <a href="#">Adventure &amp;Climbing</a>
+                                                        <a href="#">Adventure & Climbing</a>
                                                     </h6>
-                                                    <p class="des-icon">Welcome to our Print 128 web
-                                                    company that offers a wide </p>
+                                                    <p class="des-icon">Exciting outdoor adventures await the brave-hearted.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -413,9 +414,136 @@
                             </div>
                         </div>
                     </section>
+                    
+                    <section class="services-section">
+                        <div class="tf-container">
+                            <div class="row">
+                                <div class="col-md-12 text-center mb-50">
+                                    <span class="sub-title-heading text-main font-yes fs-28-46">Our Services</span>
+                                    <h2 class="title-heading mb-18">
+                                        Your complete <span class="text-main font-yes">travel solution</span>
+                                    </h2>
+                                    <p class="des">Discover a world of travel possibilities with our comprehensive range of services designed to make your journey seamless and memorable</p>
+                                </div>
+                            </div>
+                            <div class="row service-items">
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-plane-departure"></i></div>
+                                        <h4 class="service-title">FLIGHT TICKETS</h4>
+                                        <p class="service-desc">Find the best deals on flights worldwide</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-suitcase-rolling"></i></div>
+                                        <h4 class="service-title">HOLIDAY PACKAGES</h4>
+                                        <p class="service-desc">Complete vacation packages for every budget</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-hotel"></i></div>
+                                        <h4 class="service-title">HOTEL RESERVATION</h4>
+                                        <p class="service-desc">Book quality accommodations worldwide</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
+                                        <h4 class="service-title">TRAVEL INSURANCE</h4>
+                                        <p class="service-desc">Travel with peace of mind and protection</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-ship"></i></div>
+                                        <h4 class="service-title">CRUISE BOOKING</h4>
+                                        <p class="service-desc">Luxury cruise experiences around the globe</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-passport"></i></div>
+                                        <h4 class="service-title">GLOBAL VISA</h4>
+                                        <p class="service-desc">Expert assistance with visa applications</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-plane-arrival"></i></div>
+                                        <h4 class="service-title">UAE VISIT VISA</h4>
+                                        <p class="service-desc">Specialized visa services for UAE travel</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-train"></i></div>
+                                        <h4 class="service-title">TRAIN BOOKING</h4>
+                                        <p class="service-desc">Convenient rail travel reservations</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-taxi"></i></div>
+                                        <h4 class="service-title">AIRPORT TRANSFER</h4>
+                                        <p class="service-desc">Reliable transportation to and from airports</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-star"></i></div>
+                                        <h4 class="service-title">AIRPORT VIP FAST TRACK</h4>
+                                        <p class="service-desc">Premium airport experience with fast-track service</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-landmark"></i></div>
+                                        <h4 class="service-title">UAE ATTRACTIONS</h4>
+                                        <p class="service-desc">Tickets to top UAE attractions and experiences</p>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-3 mb-30">
+                                    <div class="service-box text-center">
+                                        <div class="icon-wrap"><i class="fas fa-people-arrows"></i></div>
+                                        <h4 class="service-title">MICE EVENTS</h4>
+                                        <p class="service-desc">Full-service meetings, incentives, conferences & events</p>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div class="row">
+                                <div class="col-md-12 text-center mt-30">
+                                    <a href="#" class="btn-main">
+                                        <p class="btn-main-text">BOOK NOW</p>
+                                        <p class="iconer"><i class="icon-arrow-right"></i></p>
+                                    </a>
+                                    <div class="contact-info mt-20">
+                                        <span class="contact-phone">+971 52 787 1020</span>
+                                        <span class="contact-web">www.shabzworld.com</span>
+                                        <span class="contact-email">info@shabzworld.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    
                     <!-- Widget feature -->
                     <!-- Widget destination -->
-                    <section class="top-destination2 pd-main">
+                    <section class="top-destination2 pd-main mt-5">
                         <div class="tf-container">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -519,7 +647,7 @@
                         </div>
                     </section>
                     <!-- Widget impressino -->
-                    <section class="impressino relative overflow-hidden">
+                    <!-- <section class="impressino relative overflow-hidden">
                         <div class="tf-container">
                             <div class="row z-index3 relative">
                                 <div class="col-md-6">
@@ -554,7 +682,7 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </section> -->
                     <!-- Widget impressino -->
                     <!-- Widget Top this Week -->
                     <section class="top-this-week pd-main">
@@ -586,7 +714,7 @@
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        <img src="./assests/images/tour-package/burj.png" alt="Image Listing">
+                                                        <img src="./assests/images/tour-package/burj.png" alt="Image Listing" loading="lazy">
                                                     </a>
                                                     <div class="tour-listing-content">
                                                         <span class="map">
@@ -644,12 +772,10 @@
                                                     <div class="tour-listing-content">
                                                         <span class="map">
                                                             <i class="fas fa-map-marker-alt"></i>
-                                                            United States
-                                                        USA
+                                                            United Arab Emirates
                                                         </span>
                                                         <h3 class="title-tour-list">
-                                                            <a href="tour-single.html">6 nights From
-                                                            Moscow</a>
+                                                            <a href="tour-single.html">Camal Safari</a>
                                                         </h3>
                                                         <div class="review">
                                                             <i class="fas fa-star"></i>
@@ -699,12 +825,10 @@
                                                     <div class="tour-listing-content">
                                                         <span class="map">
                                                             <i class="fas fa-map-marker-alt"></i>
-                                                            United States
-                                                        USA
+                                                            United Arab Emirates
                                                         </span>
                                                         <h3 class="title-tour-list">
-                                                            <a href="tour-single.html">6 nights From
-                                                            Moscow</a>
+                                                            <a href="tour-single.html">Dune Buggy Desert </a>
                                                         </h3>
                                                         <div class="review">
                                                             <i class="fas fa-star"></i>
@@ -754,12 +878,10 @@
                                                     <div class="tour-listing-content">
                                                         <span class="map">
                                                             <i class="fas fa-map-marker-alt"></i>
-                                                            United States
-                                                        USA
+                                                            United Arab Emirates
                                                         </span>
                                                         <h3 class="title-tour-list">
-                                                            <a href="tour-single.html">6 nights From
-                                                            Moscow</a>
+                                                            <a href="tour-single.html">Rasal Al Kaima</a>
                                                         </h3>
                                                         <div class="review">
                                                             <i class="fas fa-star"></i>
@@ -796,6 +918,7 @@
                             </div>
                         </div>
                     </section>
+                    
                     <!-- Widget Top this Week -->
                     <!-- Widget why chose us -->
                     <section class="widget-feature2">
@@ -878,7 +1001,8 @@
                             </div>
                         </div>
                     </section>
-                    <section class="testimonial-section-h4 bg-1">
+                    <!-- testimonials -->
+                    <!-- <section class="testimonial-section-h4 bg-1">
                         <div class="tf-container full">
                             <div class="row">
                                 <div class="col-12">
@@ -983,7 +1107,7 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </section> -->
                     <!-- Widget Testimonial -->
                 </main>
                 <footer class="footer footer-style1">

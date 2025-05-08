@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Vitour - Travel & Tour Booking HTML Template</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/app/css/app.css">
+    <link rel="stylesheet" href="/app/css/map.min.css">
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="assets/images/favico.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/images/favico.png">
+
+</head>
+<style>
+    .custom-file-upload {
+      cursor: pointer;
+      border: 2px dashed #dee2e6;
+      transition: all 0.3s ease;
+    }
+    
+    .custom-file-upload:hover {
+      border-color: #021B32;
+      background-color: rgba(13, 110, 253, 0.05);
+    }
+    
+    .btn-close {
+      width: 20px;
+      height: 20px;
+      opacity: 0.8;
+    }
+    
+    .btn-close:hover {
+      opacity: 1;
+    }
+  </style>
+
+<body class="body header-fixed ">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+
+    <!-- /preload -->
+
+    <div id="wrapper">
+
+        <div id="pagee" class="clearfix">
+            <div class="sidebar-dashboard">
+                <div class="db-logo">
+                    <a href="index.html"><img src="/assests/images/logo/Shabz World Round Logo.png" alt="Logo"><span>shabzworld</span></a>
+                </div>
+                <div class="db-menu">
+                    <ul>
+                        <li class="active">
+                            <a href="dashboard.html">
+                                <i class="icon-Vector-9"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/my-listing.html">
+                                <i class="icon-Group-81"></i>
+                                <span>My Listing</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/add-tour.html">
+                                <i class="icon-Group-91"></i>
+                                <span>Add Tour</span>
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a href="login.html">
+                                <i class="icon-turn-off-1"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+            </div>
+            <div class="has-dashboard">
+                <!-- Main Header -->
+                <header class="main-header flex">
+                    <!-- Header Lower -->
+                    <div id="header">
+
+                        <div class="header-dashboard">
+                            <div class="tf-container full">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="inner-container flex justify-space align-center">
+                                            <!-- Logo Box -->
+                                            <div class="header-search flex-three">
+                                                <div class="icon-bars">
+                                                    <i class="icon-Vector3"></i>
+                                                </div>
+                                                <form action="/" class="search-dashboard">
+                                                    <i class="icon-Vector5"></i>
+                                                    <input type="search" placeholder="Search tours">
+                                                </form>
+
+                                            </div>
+
+                                            <div class="nav-outer flex align-center">
+                                                <!-- Main Menu -->
+                                                <nav class="main-menu show navbar-expand-md">
+                                                    <div class="navbar-collapse collapse clearfix"
+                                                        id="navbarSupportedContent">
+                                                        <ul class="navigation clearfix">
+                                                            <li class="current"><a href="#"></a>
+                                                            </li>
+                                                            <li><a href="contact-us.html"></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </nav>
+                                                <!-- Main Menu End-->
+                                            </div>
+                                            <div class="header-account flex align-center">
+                                                <div class="dropdown notification">
+                                                    <a class="icon-notification" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="icon-notification-1"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                      <li>
+                                                        <div class="message-item  flex-three">
+                                                            <div class="image">
+                                                                <i class="icon-26"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="body-title">Discount available</div>
+                                                                <div class="text-tiny">Morbi sapien massa, ultricies at rhoncus at, ullamcorper nec diam</div>
+                                                            </div>
+                                                        </div>
+                                                      </li>
+                                                      <li>
+                                                        <div class="message-item  flex-three">
+                                                            <div class="image">
+                                                                <i class="icon-26"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="body-title">Discount available</div>
+                                                                <div class="text-tiny">Morbi sapien massa, ultricies at rhoncus at, ullamcorper nec diam</div>
+                                                            </div>
+                                                        </div>
+                                                      </li>
+                                                      <li>
+                                                        <div class="message-item  flex-three">
+                                                            <div class="image">
+                                                                <i class="icon-26"></i>
+                                                            </div>
+                                                            <div>
+                                                                <div class="body-title">Discount available</div>
+                                                                <div class="text-tiny">Morbi sapien massa, ultricies at rhoncus at, ullamcorper nec diam</div>
+                                                            </div>
+                                                        </div>
+                                                      </li>
+                                                      
+                                                    </ul>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End Header Lower -->
+
+
+                    <!-- Mobile Menu  -->
+                    <div class="close-btn"><span class="icon flaticon-cancel-1"></span></div>
+                    <div class="mobile-menu">
+                        <div class="menu-backdrop"></div>
+                        <nav class="menu-box">
+                            <div class="nav-logo"><a href="index.html">
+                                    <img src="assets/images/logo2.png" alt=""></a></div>
+                            <div class="bottom-canvas">
+                                <div class="menu-outer">
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </header>
+                <!-- Form -->
+                <div class="container py-5">
+                    <div class="row justify-content-center">
+                      <div class="col-lg-8 col-md-10">
+                        <div class="card shadow-sm border-0">
+                          <div class="card-header bg-dark text-white py-3">
+                            <h2 class="h4 mb-0 text-center text-white"><i class="fas fa-map-marked-alt me-2"></i>Add New Tour Package</h2>
+                          </div>
+                          <div class="card-body p-4">
+                            <form id="tourForm">
+                              <!-- Image Upload -->
+                              <div class="mb-4">
+                                <label for="image" class="form-label fw-bold">Tour Image <span class="text-danger">*</span></label>
+                                <div class="custom-file-upload border rounded-3 p-4 text-center" id="dropArea">
+                                  <i class="fas fa-cloud-upload-alt fs-2 text-dark mb-2"></i>
+                                  <p class="mb-1">Drag & drop image here or click to browse</p>
+                                  <p class="text-muted small">Recommended size: 1200 x 800 pixels</p>
+                                  <p class="file-name badge bg-light text-dark mb-0 mt-2" id="fileName" style="display: none;"></p>
+                                </div>
+                                <input type="file" id="image" accept="image/*" required class="form-control d-none" />
+                                <div id="dimensionError" class="alert alert-danger mt-2 d-none"></div>
+
+                                <!-- Image Preview -->
+                                <div class="image-preview-container mt-3 text-center d-none" id="imagePreviewContainer" style="display: none;">
+                                  <div class="preview-wrapper position-relative d-inline-block">
+                                    <img id="imagePreview" class="image-preview img-fluid rounded-3 border" style="max-height: 200px;" src="#" alt="Image Preview" />
+                                    <button type="button" class="btn-close position-absolute top-0 end-0 bg-white rounded-circle m-2 shadow-sm" id="removePreview" aria-label="Remove image"></button>
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <label for="location" class="form-label fw-bold">Location <span class="text-danger">*</span></label>
+                                  <div class="input-group">
+                                    <input type="text" id="location" placeholder="City, Country" required class="form-control" />
+                                  </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                  <label for="title" class="form-label fw-bold">Tour Title <span class="text-danger">*</span></label>
+                                  <div class="input-group">
+                                    <input type="text" id="title" placeholder="Captivating tour title" required class="form-control" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12 mb-3">
+                                <label for="type" class="form-label fw-bold">Tour Type <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                  <select id="type" class="form-select" required>
+                                    <option value="">-- Select Tour Type --</option>
+                                    <option value="Adventure Tour">Adventure Tour</option>
+                                    <option value="Cultural Tour">Cultural Tour</option>
+                                    <option value="Luxury Tour">Luxury Tour</option>
+                                  </select>
+                                </div>
+                              </div>
+           
+                              <div class="d-grid gap-2 mt-4">
+                                <button type="submit" class="btn btn-dark py-2">
+                                  <span class="normal-text"><i class="fas fa-plus-circle me-2"></i>Add Tour Package</span>
+                                  <span class="loading-spinner d-none">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    Processing...
+                                  </span>
+                                </button>
+                              </div>
+                              
+                              <div class="alert alert-success mt-3 d-none success-message" role="alert">
+                                <i class="fas fa-check-circle me-2"></i> Tour package added successfully!
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                
+
+                
+    <!-- Javascript -->
+    <script src="/app/js/jquery.min.js"></script>
+    <script src="/app/js/jquery.nice-select.min.js"></script>
+    <script src="/app/js/bootstrap.min.js"></script>
+    <script src="/app/js/swiper-bundle.min.js"></script>
+    <script src="/app/js/swiper.js"></script>
+    <script src="/app/js/plugin.js"></script>
+    <script src="/app/js/shortcodes.js"></script>
+    <script src="/app/js/main.js"></script>
+    <script type="module" src="/admin/config/script.js"></script>
+
+</body>
+
+</html>
