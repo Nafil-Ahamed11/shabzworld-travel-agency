@@ -394,51 +394,175 @@
     <!-- Modal -->
     <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <form id="bookingForm" class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="bookingModalLabel">Book Tour</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input required type="text" class="form-control" id="name" />
+            <form id="bookingForm" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Book Tour</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-    
-            <div class="mb-3">
-                <label for="destination" class="form-label">Destination</label>
-                <input required type="text" class="form-control" id="modalDestination" readonly />
-            </div>  
-    
-            <div class="mb-3">
-                <label for="travelType" class="form-label">Travel Type</label>
-                <input required type="text" class="form-control" id="travelType" />
-            </div>
-    
-            <div class="mb-3">
-                <label for="arrivalDate" class="form-label">Arrival Date</label>
-                <input required type="date" class="form-control" id="arrivalDate" />
-            </div>
-    
-            <div class="mb-3">
-                <label for="passengers" class="form-label">Number of Passengers</label>
-                <input required type="number" class="form-control" id="passengers" min="1" />
-            </div>
-    
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input required type="email" class="form-control" id="email" />
-            </div>
-            </div>
-            <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Submit Booking</button>
-            </div>
-        </form>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input required type="text" class="form-control" id="name" />
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="destination" class="form-label">Destination</label>
+                        <input required type="text" class="form-control" id="modalDestination" readonly />
+                    </div>  
+                    
+                    <div class="mb-3">
+                        <label for="travelType" class="form-label">Travel Type</label>
+                        <input required type="text" class="form-control" id="travelType" />
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="arrivalDate" class="form-label">Arrival Date</label>
+                        <input required type="date" class="form-control" id="arrivalDate" />
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="passengers" class="form-label">Total Number of Passengers</label>
+                        <input required type="number" class="form-control" id="passengers" min="1" onchange="updatePassengerDetails()" />
+                    </div>
+                    
+                    <div id="passengerDetails" class="mb-3 border rounded p-3 d-none">
+                        <h6>Passenger Details</h6>
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <label for="adultCount" class="form-label">Adults</label>
+                                <input type="number" class="form-control" id="adultCount" min="0" value="0" onchange="validatePassengerCounts()" />
+                            </div>
+                            <div class="col-6">
+                                <label for="childCount" class="form-label">Children</label>
+                                <input type="number" class="form-control" id="childCount" min="0" value="0" onchange="validatePassengerCounts()" />
+                            </div>
+                        </div>
+                        <div id="childAgesContainer" class="mt-3">
+                            <!-- Child age fields will be added here dynamically -->
+                        </div>
+                        <div id="passengerCountError" class="text-danger mt-2 d-none">
+                            Total of adults and children must equal the total number of passengers
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input required type="email" class="form-control" id="email" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit Booking</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <script type="module">
+       // Make functions globally accessible
+        window.updatePassengerDetails = function() {
+            const totalPassengers = parseInt(document.getElementById('passengers').value) || 0;
+            const passengerDetailsSection = document.getElementById('passengerDetails');
+            const adultCountInput = document.getElementById('adultCount');
+            const childCountInput = document.getElementById('childCount');
+            
+            // Show passenger details section if there are passengers
+            if (totalPassengers > 0) {
+                passengerDetailsSection.classList.remove('d-none');
+                
+                // Default all passengers to adults initially
+                adultCountInput.value = totalPassengers;
+                childCountInput.value = 0;
+                
+                // Set max values for adult and child counts
+                adultCountInput.max = totalPassengers;
+                childCountInput.max = totalPassengers;
+                
+                // Clear and hide child ages container
+                window.updateChildAgesFields();
+            } else {
+                passengerDetailsSection.classList.add('d-none');
+            }
+        };
+
+        window.validatePassengerCounts = function() {
+            const totalPassengers = parseInt(document.getElementById('passengers').value) || 0;
+            const adultCount = parseInt(document.getElementById('adultCount').value) || 0;
+            const childCount = parseInt(document.getElementById('childCount').value) || 0;
+            const errorElement = document.getElementById('passengerCountError');
+            
+            if (adultCount + childCount !== totalPassengers) {
+                errorElement.classList.remove('d-none');
+                document.querySelector('.modal-footer button[type="submit"]').disabled = true;
+            } else {
+                errorElement.classList.add('d-none');
+                document.querySelector('.modal-footer button[type="submit"]').disabled = false;
+                window.updateChildAgesFields();
+            }
+        };
+
+        window.updateChildAgesFields = function() {
+            const childCount = parseInt(document.getElementById('childCount').value) || 0;
+            const container = document.getElementById('childAgesContainer');
+            
+            // Clear the container
+            container.innerHTML = '';
+            
+            if (childCount > 0) {
+                container.innerHTML = '<h6 class="mt-2">Child Ages</h6>';
+                
+                // Create a row for every 2 children
+                for (let i = 0; i < childCount; i += 2) {
+                    const row = document.createElement('div');
+                    row.className = 'row mb-2';
+                    
+                    // Add first child in the row
+                    const col1 = document.createElement('div');
+                    col1.className = 'col-6';
+                    col1.innerHTML = `
+                        <label for="childAge${i + 1}" class="form-label">Child ${i + 1} Age</label>
+                        <input required type="number" class="form-control" id="childAge${i + 1}" min="0" max="17" />
+                    `;
+                    row.appendChild(col1);
+                    
+                    // Add second child if it exists
+                    if (i + 1 < childCount) {
+                        const col2 = document.createElement('div');
+                        col2.className = 'col-6';
+                        col2.innerHTML = `
+                            <label for="childAge${i + 2}" class="form-label">Child ${i + 2} Age</label>
+                            <input required type="number" class="form-control" id="childAge${i + 2}" min="0" max="17" />
+                        `;
+                        row.appendChild(col2);
+                    }
+                    
+                    container.appendChild(row);
+                }
+            }
+        };
+
+        // Set up event listeners after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set up passenger count change handler
+            const passengersInput = document.getElementById('passengers');
+            if (passengersInput) {
+                passengersInput.addEventListener('change', window.updatePassengerDetails);
+            }
+            
+            // Set up adult and child count change handlers
+            const adultCountInput = document.getElementById('adultCount');
+            const childCountInput = document.getElementById('childCount');
+            
+            if (adultCountInput) {
+                adultCountInput.addEventListener('change', window.validatePassengerCounts);
+            }
+            
+            if (childCountInput) {
+                childCountInput.addEventListener('change', window.validatePassengerCounts);
+            }
+        });
+
+        
+
         const dateElement = document.getElementById('current-date');
         const now = new Date();
 
