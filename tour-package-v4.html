@@ -132,17 +132,6 @@
                     </div>
                 </div>
 
-                <!-- End Header Lower -->
-                <!-- <a 
-                    href="#" 
-                    class="header-sidebar flex-three" 
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" 
-                    aria-controls="offcanvasRight"
-                >
-                    <i class="fas fa-bars"></i>
-                </a> -->
-
                 <!-- Mobile Menu  -->
                 <div class="close-btn"><span class="icon"><i class="fas fa-times"></i></span></div>
                 <div class="mobile-menu">
@@ -199,6 +188,13 @@
                             </div>
                         </form>
                         <div class="row" id="tour-container"></div>
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <ul class="tf-pagination flex-five">
+                                </ul>
+
+                            </div>
+                        </div>
                 </section>
                 <!-- Widget archieve tour -->
                 <section class="mb--93 bg-1">
@@ -394,66 +390,68 @@
     <!-- Modal -->
     <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form id="bookingForm" class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bookingModalLabel">Book Tour</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <form id="bookingForm" class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="bookingModalLabel">Book Tour</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input required type="text" class="form-control" id="name" />
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input required type="text" class="form-control" id="name" />
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="destination" class="form-label">Destination</label>
-                        <input required type="text" class="form-control" id="modalDestination" readonly />
-                    </div>  
-                    
-                    <div class="mb-3">
-                        <label for="travelType" class="form-label">Travel Type</label>
-                        <input required type="text" class="form-control" id="travelType" />
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="arrivalDate" class="form-label">Arrival Date</label>
-                        <input required type="date" class="form-control" id="arrivalDate" />
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="passengers" class="form-label">Total Number of Passengers</label>
-                        <input required type="number" class="form-control" id="passengers" min="1" onchange="updatePassengerDetails()" />
-                    </div>
-                    
-                    <div id="passengerDetails" class="mb-3 border rounded p-3 d-none">
-                        <h6>Passenger Details</h6>
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                <label for="adultCount" class="form-label">Adults</label>
-                                <input type="number" class="form-control" id="adultCount" min="0" value="0" onchange="validatePassengerCounts()" />
-                            </div>
-                            <div class="col-6">
-                                <label for="childCount" class="form-label">Children</label>
-                                <input type="number" class="form-control" id="childCount" min="0" value="0" onchange="validatePassengerCounts()" />
-                            </div>
-                        </div>
-                        <div id="childAgesContainer" class="mt-3">
-                            <!-- Child age fields will be added here dynamically -->
-                        </div>
-                        <div id="passengerCountError" class="text-danger mt-2 d-none">
-                            Total of adults and children must equal the total number of passengers
-                        </div>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input required type="email" class="form-control" id="email" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Submit Booking</button>
-                </div>
-            </form>
+    
+            <div class="mb-3">
+                <label for="destination" class="form-label">Destination</label>
+                <input required type="text" class="form-control" id="modalDestination" readonly />
+            </div>  
+    
+            <div class="mb-3">
+                <label for="depatureDate" class="form-label">Depature Date</label>
+                <input required type="date" class="form-control" id="depatureDate" />
+            </div>
+    
+            <div class="mb-3">
+                <label for="arrivalDate" class="form-label">Arrival Date</label>
+                <input required type="date" class="form-control" id="arrivalDate" />
+            </div>
+            
+    
+            <div class="mb-3">
+                <label for="totalPassengers" class="form-label">Total Passengers</label>
+                <input type="number" class="form-control" id="totalPassengers" min="1" value="1" required />
+              </div>
+              
+              <div class="mb-3">
+                <label for="adultCount" class="form-label">Adults</label>
+                <input type="number" class="form-control" id="adultCount" onchange="validatePassengerCount()" name="adults" min="0" value="1" required />
+              </div>
+              
+              <div class="mb-3">
+                <label for="childCount" class="form-label">Children</label>
+                <input type="number" class="form-control" id="childCount" onchange="validatePassengerCount()" name="children" min="0" value="0" required />
+              </div>
+              
+              <!-- Child age fields container -->
+              <div id="childAgesContainer" class="mb-3"></div>
+              
+              <!-- Error message -->
+              <div id="validationMessage" class="text-danger mb-3" style="display: none;"></div>
+
+            <div class="mb-3">
+                <label for="Phone No" class="form-label">Phone No</label>
+                <input required type="tel" class="form-control" id="phone" />
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input required type="email" class="form-control" id="email" />
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit Booking</button>
+            </div>
+        </form>
         </div>
     </div>
 
@@ -565,48 +563,68 @@
 
         const dateElement = document.getElementById('current-date');
         const now = new Date();
-
         const options = {
             weekday: 'long',
             month: 'short',
             day: 'numeric',
             year: 'numeric'
         };
-
         dateElement.textContent = now.toLocaleDateString('en-US', options);
+    
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, addDoc, } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { 
+            getFirestore, 
+            collection, 
+            getDocs, 
+            addDoc,
+            query,
+            orderBy,
+            limit,
+            startAfter,
+            endBefore,
+            limitToLast
+        } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
     
         const firebaseConfig = {
-        apiKey: "AIzaSyAqzjDSYawZr9IdPR8Yr5pIhTxdei10DRA",
-        authDomain: "travel-agency-3ea70.firebaseapp.com",
-        projectId: "travel-agency-3ea70",
-        storageBucket: "travel-agency-3ea70.firebasestorage.app",
-        messagingSenderId: "630304664282",
-        appId: "1:630304664282:web:12a885b210b77cf77f53e3",
-        measurementId: "G-GM0QYDSV1F"
+            apiKey: "AIzaSyAqzjDSYawZr9IdPR8Yr5pIhTxdei10DRA",
+            authDomain: "travel-agency-3ea70.firebaseapp.com",
+            projectId: "travel-agency-3ea70",
+            storageBucket: "travel-agency-3ea70.firebasestorage.app",
+            messagingSenderId: "630304664282",
+            appId: "1:630304664282:web:12a885b210b77cf77f53e3",
+            measurementId: "G-GM0QYDSV1F"
         };
     
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
     
+        // Pagination variables
+        let lastVisible = null;
+        let firstVisible = null;
+        let currentPage = 1;
+        const itemsPerPage = 8;
+        let totalDocs = 0;
+        let querySnapshot = null;
+    
         const container = document.getElementById("tour-container");
-
+        const paginationElement = document.querySelector(".tf-pagination");
+    
+        // Booking Modal Functions
         window.openBookingModal = function (destination) {
             document.getElementById("modalDestination").value = destination;
             new bootstrap.Modal(document.getElementById("bookingModal")).show();
         };
-
+    
         document.getElementById("bookingForm").addEventListener("submit", async (e) => {
             e.preventDefault();
-
+    
             const name = document.getElementById("name").value;
             const destination = document.getElementById("modalDestination").value;
             const travelType = document.getElementById("travelType").value;
             const arrivalDate = new Date(document.getElementById("arrivalDate").value);
             const passengers = parseInt(document.getElementById("passengers").value);
             const email = document.getElementById("email").value;
-
+    
             const bookingData = {
                 name,
                 destination,
@@ -616,12 +634,10 @@
                 email,
                 createdAt: new Date()
             };
-
+    
             try {
-                // Firebase submission
                 await addDoc(collection(db, "bookings"), bookingData);
-
-                // Google Form submission
+                
                 const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeA52TaM4bloaYRDmGuyBgooCrDTvefZ2sCGZZdMOhLvLg3yg/formResponse';
                 const formData = new FormData();
                 formData.append('entry.543094476', name); 
@@ -632,65 +648,168 @@
                 formData.append('entry.1454716324_year', arrivalDate.getFullYear());
                 formData.append('entry.1454716324_month', arrivalDate.getMonth() + 1);
                 formData.append('entry.1454716324_day', arrivalDate.getDate());
-
+    
                 await fetch(formUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
                 });
-
-                // Reset and show toast
+    
                 document.getElementById("bookingForm").reset();
                 bootstrap.Modal.getInstance(document.getElementById("bookingModal")).hide();
                 showSnackbar("Booking submitted successfully!");
-
+    
             } catch (error) {
                 showSnackbar("Error submitting booking: " + error.message, true);
             }
         });
     
-        async function loadTours() {
-          const querySnapshot = await getDocs(collection(db, "tourPackages"));
-          querySnapshot.forEach((doc) => {
-            const tour = doc.data();
-            container.innerHTML += `
-              <div class="col-sm-6 col-xl-3 mb-32">
-                <div class="tour-listing box-sd">
-                  <a href="" class="tour-listing-image">
-                    <img src="${tour.image}" alt="${tour.alt}">
-                  </a>
-                  <div class="tour-listing-content">
-                    <span class="map"><i class="fas fa-map-marker-alt"></i>${tour.location}</span>
-                     <div class="review">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                             <span>(1 Review)</span>
-                     </div>
-                    <h3 class="title-tour-list"><a href="">${tour.title}</a></h3>
-                    <button class="btn btn-success mt-3 w-100" onclick="openBookingModal('${tour.title}')">Book Now</button>
-                  </div>
-                </div>
-              </div>
-            `;
-          });
+        async function loadTours(direction = 'next') {
+            try {
+                container.innerHTML = '';
+                let q;
+    
+                const toursRef = collection(db, "tourPackages");
+                const baseQuery = query(toursRef, orderBy("title"), limit(itemsPerPage));
+    
+                if (direction === 'next' && lastVisible) {
+                    q = query(toursRef, orderBy("title"), startAfter(lastVisible), limit(itemsPerPage));
+                } else if (direction === 'prev' && firstVisible) {
+                    q = query(toursRef, orderBy("title"), endBefore(firstVisible), limitToLast(itemsPerPage));
+                } else {
+                    q = baseQuery;
+                }
+    
+                querySnapshot = await getDocs(q);
+                totalDocs = querySnapshot.size;
+    
+                if (querySnapshot.docs.length > 0) {
+                    firstVisible = querySnapshot.docs[0];
+                    lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+                }
+    
+                querySnapshot.forEach((doc) => {
+                    const tour = doc.data();
+                    container.innerHTML += `
+                        <div class="col-sm-6 col-xl-3 mb-32">
+                            <div class="tour-listing box-sd">
+                                <a href="" class="tour-listing-image">
+                                    <img src="${tour.image}" alt="${tour.alt}" loading="lazy" class="img-fluid">
+                                </a>
+                                <div class="tour-listing-content">
+                                    <span class="map"><i class="fas fa-map-marker-alt"></i>${tour.location}</span>
+                                    <div class="review">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span>(1 Review)</span>
+                                    </div>
+                                    <h3 class="title-tour-list"><a href="">${tour.title}</a></h3>
+                                    <button class="btn btn-success mt-3 w-100" onclick="openBookingModal('${tour.title}')">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+    
+                updatePaginationControls();
+            } catch (error) {
+                console.error("Error loading tours:", error);
+                showSnackbar("Error loading tours: " + error.message, true);
+            }
         }
-
+    
+        function updatePaginationControls() {
+            paginationElement.innerHTML = `
+                <li>
+                    <a class="pages-link prev-btn" href="#" ${currentPage === 1 ? 'disabled' : ''}>
+                        <i class="icon-29"></i>
+                    </a>
+                </li>
+                <li class="pages-item active">
+                    <span class="pages-link">${currentPage}</span>
+                </li>
+                <li>
+                    <a class="pages-link next-btn" href="#" ${totalDocs < itemsPerPage ? 'disabled' : ''}>
+                        <i class="icon--1"></i>
+                    </a>
+                </li>
+            `;
+    
+            document.querySelector('.prev-btn')?.addEventListener('click', previousPage);
+            document.querySelector('.next-btn')?.addEventListener('click', nextPage);
+        }
+    
+        function nextPage(e) {
+            e.preventDefault();
+            if (totalDocs === itemsPerPage) {
+                currentPage++;
+                loadTours('next');
+            }
+        }
+    
+        function previousPage(e) {
+            e.preventDefault();
+            if (currentPage > 1) {
+                currentPage--;
+                loadTours('prev');
+            }
+        }
+    
         function showSnackbar(message, isError = false) {
             const snackbar = document.getElementById('snackbar');
             const messageEl = document.getElementById('snackbarMessage');
-
+    
             messageEl.textContent = message;
             snackbar.classList.remove('bg-success', 'bg-danger');
             snackbar.classList.add(isError ? 'bg-danger' : 'bg-success');
-
+    
             const toast = new bootstrap.Toast(snackbar);
             toast.show();
         }
     
+        // Initial load
         loadTours();
+    const totalInput = document.getElementById('totalPassengers');
+  const adultInput = document.getElementById('adultCount');
+  const childInput = document.getElementById('childCount');
+  const childAgesContainer = document.getElementById('childAgesContainer');
+  const validationMessage = document.getElementById('validationMessage');
+
+  childInput.addEventListener('input', updateChildAgeFields);
+
+  function updateChildAgeFields() {
+    const childCount = parseInt(childInput.value) || 0;
+    childAgesContainer.innerHTML = '';
+
+    for (let i = 1; i <= childCount; i++) {
+      const div = document.createElement('div');
+      div.className = 'mb-2';
+      div.innerHTML = `
+        <label for="childAge${i}" class="form-label">Child ${i} Age</label>
+        <input type="number" class="form-control" id="childAge${i}" name="childAge${i}" min="0" max="17" required />
+      `;
+      childAgesContainer.appendChild(div);
+    }
+  }
+
+  function validatePassengerCount() {
+    const total = parseInt(totalInput.value) || 0;
+    const adults = parseInt(adultInput.value) || 0;
+    const children = parseInt(childInput.value) || 0;
+
+    if (adults + children !== total) {
+      validationMessage.style.display = 'block';
+      validationMessage.innerText = `Total adults and children must equal ${total}. Currently, it's ${adults + children}.`;
+      return false;
+    }
+
+    validationMessage.style.display = 'none';
+    return true; // form submission proceeds
+  }
+
     </script>
     <!-- Javascript -->
     <script src="app/js/jquery.min.js"></script>
