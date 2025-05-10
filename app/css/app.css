@@ -71,10 +71,9 @@
   --info: #3498db;        /* Blue */
 }
 
-.logo{
-  width: 100%;
-  height: 40px;
-  max-width: 100%;
+.logo {
+  height: auto;
+  width: auto;
   display: block;
 }
 
@@ -306,15 +305,9 @@
 }
 
 .main-header .logo-box .logo img {
-  display: inline-block;
-  max-width: 100%;
-  width: 128px;
-  height: auto;
-  -webkit-transition: all 300ms ease;
-  -ms-transition: all 300ms ease;
-  -o-transition: all 300ms ease;
-  -moz-transition: all 300ms ease;
-  transition: all 300ms ease;
+  width: 108px;
+  height: 60px;
+  display: block;
 }
 
 .main-header .logo-box .logo {
@@ -1136,7 +1129,7 @@
 .header-style3 .header-top {
   padding-left: 0px;
   margin: 5px 0px 9px 0px;
-  background-color: transparent;
+  background-color: var(--info);
 }
 .header-style3 .header-top .header-top-right ul li {
   color: #FFFFFF;
@@ -1176,8 +1169,7 @@
   padding-right: 38px;
 }
 .header-style3 .header-lower .logo-box {
-background: white;
-  clip-path: circle(33.4% at 50% 51%);
+  background: transparent;
   padding: 29px 61px 29px 18px;
 }
 .header-style3 .header-lower .header-account {
@@ -1206,7 +1198,7 @@ background: white;
   font-weight: 700;
   line-height: 17px;
   display: inline-block;
-  color: #FFFFFF ;
+  color: #81b927 ;
   text-transform: uppercase;
 }
 .header-style3 .header-lower .address-wrap-right .content p {
