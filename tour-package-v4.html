@@ -390,79 +390,93 @@
     <!-- Modal -->
     <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <form id="bookingForm" class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="bookingModalLabel">Book Tour</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input required type="text" class="form-control" id="name" />
+            <form id="bookingForm" class="modal-content" onsubmit="return validateForm()">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Book Tour</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <!-- Personal Info - Two columns -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Name</label>
+                            <input required type="text" class="form-control" id="name" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Phone No</label>
+                            <input required type="tel" class="form-control" id="phone" />
+                        </div>
+                    </div>
     
-            <div class="mb-3">
-                <label for="destination" class="form-label">Destination</label>
-                <input required type="text" class="form-control" id="modalDestination" readonly />
-            </div>  
+                    <!-- Email and Destination - Two columns -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input required type="email" class="form-control" id="email" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="modalDestination" class="form-label">Destination</label>
+                            <input required type="text" class="form-control" id="modalDestination" readonly />
+                        </div>
+                    </div>
     
-            <div class="mb-3">
-                <label for="depatureDate" class="form-label">Depature Date</label>
-                <input required type="date" class="form-control" id="depatureDate" />
-            </div>
+                    <!-- Travel Dates - Two columns -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="departureDate" class="form-label">Departure Date</label>
+                            <input required type="date" class="form-control" id="departureDate" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="arrivalDate" class="form-label">Arrival Date</label>
+                            <input required type="date" class="form-control" id="arrivalDate" />
+                        </div>
+                    </div>
     
-            <div class="mb-3">
-                <label for="arrivalDate" class="form-label">Arrival Date</label>
-                <input required type="date" class="form-control" id="arrivalDate" />
-            </div>
-            
+                    <!-- Passenger Info -->
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="passengers" class="form-label">Total Passengers</label>
+                            <input type="number" class="form-control" id="passengers" min="1" value="1" required />
+                        </div>
+                    </div>
     
-            <div class="mb-3">
-                <label for="totalPassengers" class="form-label">Total Passengers</label>
-                <input type="number" class="form-control" id="totalPassengers" min="1" value="1" required />
-              </div>
-              
-              <div class="mb-3">
-                <label for="adultCount" class="form-label">Adults</label>
-                <input type="number" class="form-control" id="adultCount" onchange="validatePassengerCount()" name="adults" min="0" value="1" required />
-              </div>
-              
-              <div class="mb-3">
-                <label for="childCount" class="form-label">Children</label>
-                <input type="number" class="form-control" id="childCount" onchange="validatePassengerCount()" name="children" min="0" value="0" required />
-              </div>
-              
-              <!-- Child age fields container -->
-              <div id="childAgesContainer" class="mb-3"></div>
-              
-              <!-- Error message -->
-              <div id="validationMessage" class="text-danger mb-3" style="display: none;"></div>
-
-            <div class="mb-3">
-                <label for="Phone No" class="form-label">Phone No</label>
-                <input required type="tel" class="form-control" id="phone" />
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input required type="email" class="form-control" id="email" />
-            </div>
-            </div>
-            <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Submit Booking</button>
-            </div>
-        </form>
+                    <!-- Adult and Child Counts -->
+                    <div id="passengerDetails" class="mb-3">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="adultCount" class="form-label">Adults</label>
+                                <input type="number" class="form-control" id="adultCount" name="adults" min="0" value="1" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="childCount" class="form-label">Children</label>
+                                <input type="number" class="form-control" id="childCount" name="children" min="0" value="0" required />
+                            </div>
+                        </div>
+                        
+                        <!-- Error message -->
+                        <div id="passengerCountError" class="text-danger mb-3 d-none">
+                            Total adults and children must equal the number of passengers.
+                        </div>
+                    </div>
+    
+                    <!-- Child age fields container -->
+                    <div id="childAgesContainer" class="mb-3"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit Booking</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <script type="module">
-       // Make functions globally accessible
+        const childAgeValues = {};
         window.updatePassengerDetails = function() {
             const totalPassengers = parseInt(document.getElementById('passengers').value) || 0;
             const passengerDetailsSection = document.getElementById('passengerDetails');
             const adultCountInput = document.getElementById('adultCount');
             const childCountInput = document.getElementById('childCount');
-            
+        
             // Show passenger details section if there are passengers
             if (totalPassengers > 0) {
                 passengerDetailsSection.classList.remove('d-none');
@@ -480,6 +494,9 @@
             } else {
                 passengerDetailsSection.classList.add('d-none');
             }
+        
+            // Validate after updating
+            window.validatePassengerCounts();
         };
 
         window.validatePassengerCounts = function() {
@@ -490,11 +507,11 @@
             
             if (adultCount + childCount !== totalPassengers) {
                 errorElement.classList.remove('d-none');
-                document.querySelector('.modal-footer button[type="submit"]').disabled = true;
+                return false;
             } else {
                 errorElement.classList.add('d-none');
-                document.querySelector('.modal-footer button[type="submit"]').disabled = false;
                 window.updateChildAgesFields();
+                return true;
             }
         };
 
@@ -515,27 +532,63 @@
                     
                     // Add first child in the row
                     const col1 = document.createElement('div');
-                    col1.className = 'col-6';
+                    col1.className = 'col-md-6';
+                    
+                    // Use the stored value if available
+                    const childValue1 = childAgeValues[`childAge${i + 1}`] || '';
+                    
                     col1.innerHTML = `
                         <label for="childAge${i + 1}" class="form-label">Child ${i + 1} Age</label>
-                        <input required type="number" class="form-control" id="childAge${i + 1}" min="0" max="17" />
+                        <input required type="number" class="form-control" id="childAge${i + 1}" name="childAge${i + 1}" min="0" max="17" value="${childValue1}" />
                     `;
                     row.appendChild(col1);
                     
                     // Add second child if it exists
                     if (i + 1 < childCount) {
                         const col2 = document.createElement('div');
-                        col2.className = 'col-6';
+                        col2.className = 'col-md-6';
+                        
+                        // Use the stored value if available
+                        const childValue2 = childAgeValues[`childAge${i + 2}`] || '';
+                        
                         col2.innerHTML = `
                             <label for="childAge${i + 2}" class="form-label">Child ${i + 2} Age</label>
-                            <input required type="number" class="form-control" id="childAge${i + 2}" min="0" max="17" />
+                            <input required type="number" class="form-control" id="childAge${i + 2}" name="childAge${i + 2}" min="0" max="17" value="${childValue2}" />
                         `;
                         row.appendChild(col2);
                     }
                     
                     container.appendChild(row);
                 }
+                
+                // Add event listeners to all child age inputs to store values when changed
+                for (let i = 1; i <= childCount; i++) {
+                    const input = document.getElementById(`childAge${i}`);
+                    if (input) {
+                        input.addEventListener('change', function() {
+                            const age = this.value;
+                            // Store the value for persistence
+                            childAgeValues[`childAge${i}`] = age;
+                        });
+                        
+                        // Also store initial value if present
+                        if (input.value) {
+                            childAgeValues[`childAge${i}`] = input.value;
+                        }
+                    }
+                }
             }
+        };
+
+        window.validateForm = function() {
+            // First validate passenger counts
+            if (!window.validatePassengerCounts()) {
+                return false;
+            }
+            
+            // Add any additional validation if needed
+            
+            return true;
         };
 
         // Set up event listeners after DOM is ready
@@ -552,211 +605,307 @@
             
             if (adultCountInput) {
                 adultCountInput.addEventListener('change', window.validatePassengerCounts);
+                
+                // Add constraint: adult count changes adjust child count to match total
+                adultCountInput.addEventListener('change', function() {
+                    const totalPassengers = parseInt(document.getElementById('passengers').value) || 0;
+                    const adultCount = parseInt(this.value) || 0;
+                    
+                    if (adultCount <= totalPassengers) {
+                        document.getElementById('childCount').value = totalPassengers - adultCount;
+                        window.validatePassengerCounts();
+                    }
+                });
             }
             
             if (childCountInput) {
                 childCountInput.addEventListener('change', window.validatePassengerCounts);
-            }
-        });
-
-        
-
-        const dateElement = document.getElementById('current-date');
-        const now = new Date();
-        const options = {
-            weekday: 'long',
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-        };
-        dateElement.textContent = now.toLocaleDateString('en-US', options);
-    
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { 
-            getFirestore, 
-            collection, 
-            getDocs, 
-            addDoc,
-            query,
-            orderBy,
-            limit,
-            startAfter,
-            endBefore,
-            limitToLast
-        } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-    
-        const firebaseConfig = {
-            apiKey: "AIzaSyAqzjDSYawZr9IdPR8Yr5pIhTxdei10DRA",
-            authDomain: "travel-agency-3ea70.firebaseapp.com",
-            projectId: "travel-agency-3ea70",
-            storageBucket: "travel-agency-3ea70.firebasestorage.app",
-            messagingSenderId: "630304664282",
-            appId: "1:630304664282:web:12a885b210b77cf77f53e3",
-            measurementId: "G-GM0QYDSV1F"
-        };
-    
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-    
-        // Pagination variables
-        let lastVisible = null;
-        let firstVisible = null;
-        let currentPage = 1;
-        const itemsPerPage = 8;
-        let totalDocs = 0;
-        let querySnapshot = null;
-    
-        const container = document.getElementById("tour-container");
-        const paginationElement = document.querySelector(".tf-pagination");
-    
-        // Booking Modal Functions
-        window.openBookingModal = function (destination) {
-            document.getElementById("modalDestination").value = destination;
-            new bootstrap.Modal(document.getElementById("bookingModal")).show();
-        };
-    
-        document.getElementById("bookingForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-    
-            const name = document.getElementById("name").value;
-            const destination = document.getElementById("modalDestination").value;
-            const travelType = document.getElementById("travelType").value;
-            const arrivalDate = new Date(document.getElementById("arrivalDate").value);
-            const passengers = parseInt(document.getElementById("passengers").value);
-            const email = document.getElementById("email").value;
-    
-            const bookingData = {
-                name,
-                destination,
-                travelType,
-                arrivalDate: arrivalDate.toISOString(),
-                passengers,
-                email,
-                createdAt: new Date()
-            };
-    
-            try {
-                await addDoc(collection(db, "bookings"), bookingData);
                 
-                const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeA52TaM4bloaYRDmGuyBgooCrDTvefZ2sCGZZdMOhLvLg3yg/formResponse';
-                const formData = new FormData();
-                formData.append('entry.543094476', name); 
-                formData.append('entry.534350288', destination); 
-                formData.append('entry.1250227044', travelType);
-                formData.append('entry.1424151992', passengers); 
-                formData.append('entry.893270675', email);
-                formData.append('entry.1454716324_year', arrivalDate.getFullYear());
-                formData.append('entry.1454716324_month', arrivalDate.getMonth() + 1);
-                formData.append('entry.1454716324_day', arrivalDate.getDate());
-    
-                await fetch(formUrl, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
+                // Add constraint: child count changes adjust adult count to match total
+                childCountInput.addEventListener('change', function() {
+                    const totalPassengers = parseInt(document.getElementById('passengers').value) || 0;
+                    const childCount = parseInt(this.value) || 0;
+                    
+                    if (childCount <= totalPassengers) {
+                        document.getElementById('adultCount').value = totalPassengers - childCount;
+                        window.validatePassengerCounts();
+                    }
                 });
-    
-                document.getElementById("bookingForm").reset();
-                bootstrap.Modal.getInstance(document.getElementById("bookingModal")).hide();
-                showSnackbar("Booking submitted successfully!");
-    
-            } catch (error) {
-                showSnackbar("Error submitting booking: " + error.message, true);
             }
+            
+            // Initial setup
+            window.updatePassengerDetails();
         });
-    
-        async function loadTours(direction = 'next') {
-            try {
-                container.innerHTML = '';
-                let q;
-    
-                const toursRef = collection(db, "tourPackages");
-                const baseQuery = query(toursRef, orderBy("title"), limit(itemsPerPage));
-    
-                if (direction === 'next' && lastVisible) {
-                    q = query(toursRef, orderBy("title"), startAfter(lastVisible), limit(itemsPerPage));
-                } else if (direction === 'prev' && firstVisible) {
-                    q = query(toursRef, orderBy("title"), endBefore(firstVisible), limitToLast(itemsPerPage));
-                } else {
-                    q = baseQuery;
+
+            const dateElement = document.getElementById('current-date');
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            };
+            dateElement.textContent = now.toLocaleDateString('en-US', options);
+        
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+            import { 
+                getFirestore, 
+                collection, 
+                getDocs, 
+                addDoc,
+                query,
+                orderBy,
+                limit,
+                startAfter,
+                endBefore,
+                limitToLast
+            } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        
+            const firebaseConfig = {
+                apiKey: "AIzaSyAqzjDSYawZr9IdPR8Yr5pIhTxdei10DRA",
+                authDomain: "travel-agency-3ea70.firebaseapp.com",
+                projectId: "travel-agency-3ea70",
+                storageBucket: "travel-agency-3ea70.firebasestorage.app",
+                messagingSenderId: "630304664282",
+                appId: "1:630304664282:web:12a885b210b77cf77f53e3",
+                measurementId: "G-GM0QYDSV1F"
+            };
+        
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+        
+            // Pagination variables
+            let lastVisible = null;
+            let firstVisible = null;
+            let currentPage = 1;
+            const itemsPerPage = 8;
+            let totalDocs = 0;
+            let querySnapshot = null;
+        
+            const container = document.getElementById("tour-container");
+            const paginationElement = document.querySelector(".tf-pagination");
+        
+            // Booking Modal Functions
+            window.openBookingModal = function (destination) {
+                document.getElementById("modalDestination").value = destination;
+                new bootstrap.Modal(document.getElementById("bookingModal")).show();
+            };
+
+            window.getChildAges = function() {
+                const childCount = parseInt(document.getElementById('childCount').value) || 0;
+                
+                const childAges = [];
+                
+                for (let i = 1; i <= childCount; i++) {
+                    const ageInputId = `childAge${i}`;
+                    const ageInput = document.getElementById(ageInputId);
+                    
+                    if (ageInput) {
+                        
+                        // Get the value and ensure it's a valid number
+                        const age = parseInt(ageInput.value);
+                        
+                        if (!isNaN(age)) {
+                            childAges.push(age);
+                        } else {
+                            // Look for a stored value instead
+                            const storedAge = parseInt(childAgeValues[ageInputId]);
+                            if (!isNaN(storedAge)) {
+                                childAges.push(storedAge);
+                            } else {
+                                // Push 0 if no value is entered or stored
+                                childAges.push(0);
+                            }
+                        }
+                    } else {
+                        // If the element doesn't exist but we have a stored value
+                        const storedAge = parseInt(childAgeValues[ageInputId]);
+                        if (!isNaN(storedAge)) {
+                            childAges.push(storedAge);
+                        } else {
+                            console.error(`Input #${i} element not found and no stored value, skipping`);
+                        }
+                    }
                 }
-    
-                querySnapshot = await getDocs(q);
-                totalDocs = querySnapshot.size;
-    
-                if (querySnapshot.docs.length > 0) {
-                    firstVisible = querySnapshot.docs[0];
-                    lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+                
+                return childAges;
+            };
+
+            window.validateForm = function() {
+                // First validate passenger counts
+                if (!window.validatePassengerCounts()) {
+                    return false;
                 }
-    
-                querySnapshot.forEach((doc) => {
-                    const tour = doc.data();
-                    container.innerHTML += `
-                        <div class="col-sm-6 col-xl-3 mb-32">
-                            <div class="tour-listing box-sd">
-                                <a href="" class="tour-listing-image">
-                                    <img src="${tour.image}" alt="${tour.alt}" loading="lazy" class="img-fluid">
-                                </a>
-                                <div class="tour-listing-content">
-                                    <span class="map"><i class="fas fa-map-marker-alt"></i>${tour.location}</span>
-                                    <div class="review">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>(1 Review)</span>
+                
+                // Add any additional validation if needed
+                
+                return true;
+            };
+        
+            document.addEventListener('DOMContentLoaded', ()=>{
+                document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+                    e.preventDefault();
+
+                    if (!window.validateForm()) {
+                        return;
+                    }
+                
+                    const name = document.getElementById("name").value;
+                    const phone = document.getElementById("phone").value;
+                    const email = document.getElementById("email").value;
+                    const destination = document.getElementById("modalDestination").value;
+                    const departureDate = new Date(document.getElementById("departureDate").value);
+                    const arrivalDate = new Date(document.getElementById("arrivalDate").value);
+                    const totalPassengers = parseInt(document.getElementById("passengers").value);
+                    const adultCount = parseInt(document.getElementById("adultCount").value);
+                    const childCount = parseInt(document.getElementById("childCount").value);
+
+                    const childAges = window.getChildAges();
+                    const formattedChildAges = childAges.length > 0 ? childAges.join(', ') : '0';
+                
+                    const bookingData = {
+                        name,
+                        phone,
+                        email,
+                        destination,
+                        departureDate: departureDate.toISOString(),
+                        arrivalDate: arrivalDate.toISOString(),
+                        totalPassengers,
+                        adultCount,
+                        childCount,
+                        childAges: formattedChildAges,
+                        createdAt: new Date()
+                    };
+            
+                    try {
+                        await addDoc(collection(db, "bookings"), bookingData);
+                        
+                        const formUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeA52TaM4bloaYRDmGuyBgooCrDTvefZ2sCGZZdMOhLvLg3yg/formResponse';
+                        const formData = new FormData();
+                        formData.append('entry.543094476', name); 
+                        formData.append('entry.534350288', destination); 
+                        formData.append('entry.1250227044', phone);
+                        formData.append('entry.1424151992', totalPassengers); 
+                        formData.append('entry.893270675', email);
+                        formData.append('entry.1454716324_year', arrivalDate.getFullYear());
+                        formData.append('entry.1454716324_month', arrivalDate.getMonth() + 1);
+                        formData.append('entry.1454716324_day', arrivalDate.getDate());
+                        formData.append('entry.609456838_year', departureDate.getFullYear());
+                        formData.append('entry.609456838_month', departureDate.getMonth() + 1);
+                        formData.append('entry.609456838_day', departureDate.getDate());
+                        formData.append('entry.405154481', formattedChildAges);
+                        formData.append('entry.1612655512', adultCount);
+                        formData.append('entry.114164941', childCount);
+            
+                        await fetch(formUrl, {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            body: formData
+                        });
+            
+                        document.getElementById("bookingForm").reset();
+                        bootstrap.Modal.getInstance(document.getElementById("bookingModal")).hide();
+                        showSnackbar("Booking submitted successfully!");
+            
+                    } catch (error) {
+                        showSnackbar("Error submitting booking: " + error.message, true);
+                    }
+                });
+            })
+
+            async function loadTours(direction = 'next') {
+                try {
+                    container.innerHTML = '';
+                    let q;
+        
+                    const toursRef = collection(db, "tourPackages");
+                    const baseQuery = query(toursRef, orderBy("title"), limit(itemsPerPage));
+        
+                    if (direction === 'next' && lastVisible) {
+                        q = query(toursRef, orderBy("title"), startAfter(lastVisible), limit(itemsPerPage));
+                    } else if (direction === 'prev' && firstVisible) {
+                        q = query(toursRef, orderBy("title"), endBefore(firstVisible), limitToLast(itemsPerPage));
+                    } else {
+                        q = baseQuery;
+                    }
+        
+                    querySnapshot = await getDocs(q);
+                    totalDocs = querySnapshot.size;
+        
+                    if (querySnapshot.docs.length > 0) {
+                        firstVisible = querySnapshot.docs[0];
+                        lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+                    }
+        
+                    querySnapshot.forEach((doc) => {
+                        const tour = doc.data();
+                        container.innerHTML += `
+                            <div class="col-sm-6 col-xl-3 mb-32">
+                                <div class="tour-listing box-sd">
+                                    <a href="" class="tour-listing-image">
+                                        <img src="${tour.image}" alt="${tour.alt}" loading="lazy" class="img-fluid">
+                                    </a>
+                                    <div class="tour-listing-content">
+                                        <span class="map"><i class="fas fa-map-marker-alt"></i>${tour.location}</span>
+                                        <div class="review">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>(1 Review)</span>
+                                        </div>
+                                        <h3 class="title-tour-list"><a href="">${tour.title}</a></h3>
+                                        <button class="btn btn-success mt-3 w-100" onclick="openBookingModal('${tour.title}')">Book Now</button>
                                     </div>
-                                    <h3 class="title-tour-list"><a href="">${tour.title}</a></h3>
-                                    <button class="btn btn-success mt-3 w-100" onclick="openBookingModal('${tour.title}')">Book Now</button>
                                 </div>
                             </div>
-                        </div>
-                    `;
-                });
-    
-                updatePaginationControls();
-            } catch (error) {
-                console.error("Error loading tours:", error);
-                showSnackbar("Error loading tours: " + error.message, true);
+                        `;
+                    });
+        
+                    updatePaginationControls();
+                } catch (error) {
+                    console.error("Error loading tours:", error);
+                    showSnackbar("Error loading tours: " + error.message, true);
+                }
             }
-        }
-    
-        function updatePaginationControls() {
-            paginationElement.innerHTML = `
-                <li>
-                    <a class="pages-link prev-btn" href="#" ${currentPage === 1 ? 'disabled' : ''}>
-                        <i class="icon-29"></i>
-                    </a>
-                </li>
-                <li class="pages-item active">
-                    <span class="pages-link">${currentPage}</span>
-                </li>
-                <li>
-                    <a class="pages-link next-btn" href="#" ${totalDocs < itemsPerPage ? 'disabled' : ''}>
-                        <i class="icon--1"></i>
-                    </a>
-                </li>
-            `;
-    
-            document.querySelector('.prev-btn')?.addEventListener('click', previousPage);
-            document.querySelector('.next-btn')?.addEventListener('click', nextPage);
-        }
-    
-        function nextPage(e) {
-            e.preventDefault();
-            if (totalDocs === itemsPerPage) {
-                currentPage++;
-                loadTours('next');
+        
+            function updatePaginationControls() {
+                paginationElement.innerHTML = `
+                    <li>
+                        <a class="pages-link prev-btn" href="#" ${currentPage === 1 ? 'disabled' : ''}>
+                            <i class="icon-29"></i>
+                        </a>
+                    </li>
+                    <li class="pages-item active">
+                        <span class="pages-link">${currentPage}</span>
+                    </li>
+                    <li>
+                        <a class="pages-link next-btn" href="#" ${totalDocs < itemsPerPage ? 'disabled' : ''}>
+                            <i class="icon--1"></i>
+                        </a>
+                    </li>
+                `;
+        
+                document.querySelector('.prev-btn')?.addEventListener('click', previousPage);
+                document.querySelector('.next-btn')?.addEventListener('click', nextPage);
             }
-        }
-    
-        function previousPage(e) {
-            e.preventDefault();
-            if (currentPage > 1) {
-                currentPage--;
-                loadTours('prev');
+        
+            function nextPage(e) {
+                e.preventDefault();
+                if (totalDocs === itemsPerPage) {
+                    currentPage++;
+                    loadTours('next');
+                }
             }
-        }
+        
+            function previousPage(e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    loadTours('prev');
+                }
+            }
     
         function showSnackbar(message, isError = false) {
             const snackbar = document.getElementById('snackbar');
@@ -772,44 +921,6 @@
     
         // Initial load
         loadTours();
-    const totalInput = document.getElementById('totalPassengers');
-  const adultInput = document.getElementById('adultCount');
-  const childInput = document.getElementById('childCount');
-  const childAgesContainer = document.getElementById('childAgesContainer');
-  const validationMessage = document.getElementById('validationMessage');
-
-  childInput.addEventListener('input', updateChildAgeFields);
-
-  function updateChildAgeFields() {
-    const childCount = parseInt(childInput.value) || 0;
-    childAgesContainer.innerHTML = '';
-
-    for (let i = 1; i <= childCount; i++) {
-      const div = document.createElement('div');
-      div.className = 'mb-2';
-      div.innerHTML = `
-        <label for="childAge${i}" class="form-label">Child ${i} Age</label>
-        <input type="number" class="form-control" id="childAge${i}" name="childAge${i}" min="0" max="17" required />
-      `;
-      childAgesContainer.appendChild(div);
-    }
-  }
-
-  function validatePassengerCount() {
-    const total = parseInt(totalInput.value) || 0;
-    const adults = parseInt(adultInput.value) || 0;
-    const children = parseInt(childInput.value) || 0;
-
-    if (adults + children !== total) {
-      validationMessage.style.display = 'block';
-      validationMessage.innerText = `Total adults and children must equal ${total}. Currently, it's ${adults + children}.`;
-      return false;
-    }
-
-    validationMessage.style.display = 'none';
-    return true; // form submission proceeds
-  }
-
     </script>
     <!-- Javascript -->
     <script src="app/js/jquery.min.js"></script>
