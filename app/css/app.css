@@ -71,11 +71,6 @@
   --info: #3498db;        /* Blue */
 }
 
-.logo {
-  height: auto;
-  width: auto;
-  display: block;
-}
 
 .header-top {
   padding-left: 209px;
@@ -304,12 +299,6 @@
   width: 200px;
 }
 
-.main-header .logo-box .logo img {
-  width: 108px;
-  height: 60px;
-  display: block;
-}
-
 .main-header .logo-box .logo {
   position: relative;
 }
@@ -318,10 +307,27 @@
   width: 100%;
 }
 
+
+/* Force the logo image height */
+.logo-box .logo img {
+  height: 100px;
+  width: auto;
+  display: block;
+}
+
+.inner-container {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.logo-box, .nav-outer, .header-account {
+  padding: 0;
+  margin: 0;
+}
+
 .main-header .header-lower {
-  position: relative;
-  padding-left: 214px;
-  padding-right: 45px;
+  position: relative;;
   transition: all 300ms ease;
   -moz-transition: all 300ms ease;
   -webkit-transition: all 300ms ease;
@@ -341,7 +347,7 @@
 
 .main-header .header-upper .logo-box {
   position: relative;
-  padding: 10px 0px 10px;
+  /* padding: 10px 0px 10px; */
 }
 
 .main-header .header-upper .logo-box .logo {
@@ -1129,7 +1135,7 @@
 .header-style3 .header-top {
   padding-left: 0px;
   margin: 5px 0px 9px 0px;
-  background-color: var(--info);
+  background-color: transparent;
 }
 .header-style3 .header-top .header-top-right ul li {
   color: #FFFFFF;
@@ -1164,7 +1170,7 @@
   color: #26A69A;
 }
 .header-style3 .header-lower {
-  background-color: transparent;
+  background-color: #FFFFFF;
   padding-left: 0px;
   padding-right: 38px;
 }
