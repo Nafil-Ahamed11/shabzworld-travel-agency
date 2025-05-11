@@ -233,14 +233,12 @@
                                 <div class="col-md-8">
                                     <p class="showing">Showing <span id="shown-count" class="text-main">0</span> of <span id="total-count">0</span> Results</p>
                                     <div class="flex-three filter-tour-package">
-                                        <div class="nice-select" tabindex="0">
+                                        <div class="nice-select" id="typeFilter" tabindex="0">
                                             <span class="current">Type</span>
-                                            <ul class="list">
-                                                <li data-value="" class="option selected focus">Type</li>
-                                                <li data-value="type" class="option">Type</li>
-                                                <li data-value="type" class="option">Type</li>
+                                            <ul class="list" id="typeFilterList">
+                                                <li data-value="" class="option selected">All</li>
                                             </ul>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>
@@ -702,6 +700,7 @@
                 addDoc,
                 query,
                 orderBy,
+                where,
                 limit,
                 startAfter,
                 endBefore,
@@ -726,6 +725,7 @@
             let lastVisible = null;
             let firstVisible = null;
             let currentPage = 1;
+            let selectedType = '';
             const itemsPerPage = 8;
             let totalDocs = 0;
             let querySnapshot = null;
@@ -866,12 +866,47 @@
                 document.getElementById('total-count').textContent = total;
             }
 
+
+            async function populateTypeFilter() {
+            const toursSnapshot = await getDocs(collection(db, "tourPackages"));
+            const typeSet = new Set();
+
+            toursSnapshot.forEach(doc => {
+                const type = doc.data().type;
+                if (type) {
+                    typeSet.add(type);
+                }
+            });
+
+
+            const typeFilterList = document.getElementById("typeFilterList");
+            typeSet.forEach(type => {
+                const li = document.createElement("li");
+                li.className = "option";
+                li.dataset.value = type;
+                li.innerText = type;
+                typeFilterList.appendChild(li);
+            });
+
+            // Activate dropdown click listener
+            setupTypeFilterListener();
+        }
+
+
             async function loadTours(direction = 'next') {
                 try {
                     container.innerHTML = '';
                     let q;
+                    
 
                     const toursRef = collection(db, "tourPackages");
+                    let constraints = [];
+                    
+                    if (selectedType) {
+                        q = query(toursRef, where("type", "==", selectedType), orderBy("title"), limit(itemsPerPage));
+                    } else {
+                        q = query(toursRef, orderBy("title"), limit(itemsPerPage));
+                    }
                     const baseQuery = query(toursRef, orderBy("title"), limit(itemsPerPage));
                     
                     if (direction === 'next' && lastVisible) {
@@ -967,6 +1002,21 @@
                 }
             }
     
+            function setupTypeFilterListener() {
+            document.querySelectorAll('#typeFilterList .option').forEach(option => {
+                option.addEventListener('click', (e) => {
+                    selectedType = e.target.dataset.value || '';
+                    document.querySelector('#typeFilter .current').textContent = selectedType || 'All';
+
+                    currentPage = 1;
+                    lastVisible = null;
+                    firstVisible = null;
+
+                    loadTours();
+                });
+            });
+        }
+
         function showSnackbar(message, isError = false) {
             const snackbar = document.getElementById('snackbar');
             const messageEl = document.getElementById('snackbarMessage');
@@ -980,6 +1030,7 @@
         }
     
         // Initial load
+        populateTypeFilter();
         loadTours();
     </script>
     <!-- Javascript -->
