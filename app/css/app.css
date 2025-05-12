@@ -4667,6 +4667,39 @@
   border-radius: 100%;
   border: 2px solid #FFFFFF;
 }
+
+/* footer */
+
+.footer-main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px; /* optional: gives space between stacked columns */
+    }
+
+    .footer-logo,
+    .footer-service,
+    .footer-disclaimer {
+      flex: 1 1 300px; /* ensures they wrap on small screens */
+    }
+
+    @media (max-width: 768px) {
+      .footer-main {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-logo,
+      .footer-service,
+      .footer-disclaimer {
+        width: 100%;
+      }
+
+      .footer-disclaimer .disclaimer-content p {
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+    }
+
 .has-dashboard .footer-dashboard {
   background-color: #021B32;
   padding: 50px 161px 50px 109px;
